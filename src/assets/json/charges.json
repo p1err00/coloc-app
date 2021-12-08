@@ -1,0 +1,27 @@
+[
+    {
+        "id": 0,
+        "nom" : "aze",
+        "valeur" : 200
+    },
+    {
+        "id": 1,
+        "nom" : "qsd",
+        "valeur" : 100
+    },
+    {
+        "id": 2,
+        "nom" : "wxc",
+        "valeur" : 125
+    },
+    {
+        "id": 3,
+        "nom" : "rty",
+        "valeur" : 12
+    },
+    {
+        "id": 4,
+        "nom" : "fgh",
+        "valeur" : 47
+    }
+]

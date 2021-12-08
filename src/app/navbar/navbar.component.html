@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid mr-4">
+
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="active">Home</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav">
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/taches" routerLinkActive="active">Taches</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/evenements" routerLinkActive="active">Evenements</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/courses" routerLinkActive="active">Courses</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/stock"
+            routerLinkActive="active">Stock</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/wishlist" routerLinkActive="active">Wishlist</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/stockage" routerLinkActive="active">Stockage</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/statistique" routerLinkActive="active">Statistique</a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="d-flex flex-row mr-4">
+
+      <div class="dropdown mr-2 p-2">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownVote"
+        aria-haspopup="true" aria-expanded="false">
+          <img src="assets/img/ic_thumbs_up_down.png" alt="">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownVote">
+          <app-vote></app-vote>
+        </div>
+      </div>
+      
+      <div class="dropdown mr-2 p-2">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMessage"
+          aria-haspopup="true" aria-expanded="false">
+          <img src="assets/img/ic_assignment_late_black_36dp.png" alt="">
+        </button>
+        <span class="translate-middle badge badge-danger rounded-pill">
+          {{ nbNotif }}
+        </span>
+        <div class="dropdown-menu" aria-labelledby="dropdownMessage">
+          <app-sidebar-right (setNbNotifs)="setNbNotifs($event)"></app-sidebar-right>
+
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle bg-light text-dark border-0" type="button" id="dropdownMenu2"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="assets/img/ic_account_circle_black_48dp.png" alt="">
+
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" href="/user-profile">Compte</a>
+          <a class="dropdown-item" href="/options">Options</a>
+          <a class="dropdown-item" href="" (click)="logout()">Deconnexion</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>

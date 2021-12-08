@@ -1,0 +1,64 @@
+<div class="d-flex flex-row mx-auto mt-3">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12" *ngIf="!selectedUserBool">
+
+                <div class="user-list-card">
+                    <app-channels (selectChannel)="getChannelFromChild($event)"></app-channels>
+                    
+                    
+                </div>
+            </div>
+            <div class="col-md-12" *ngIf="selectedUserBool">
+                <div class="chat-container">
+                    <ng-container>
+                        <div class="chat-header">
+                            <button type="button" class="btn btn-sm btn-primary" (click)="leave()">
+                                <img src="assets/img/ic_arrow_back_36pt.png" alt="">
+                            </button>
+                            <p class="username">
+                                {{ currentChannel.nom }}
+                            </p>
+                        </div>
+                    
+                        <div class="chat-body">
+                            <!-- [ngClass]="message?.user === currentUser?.username_user && 'name-user'" -->
+                            <div *ngFor="let message of messageArray">
+                                    <p class="message-container w-100 float-left" *ngIf="message.id_user_send != currentUser.id_user">
+                                        {{ message?.message }}
+                                    </p>
+                                    <p class="message-container w-100 float-right" *ngIf="message.id_user_send == currentUser.id_user">
+                                        {{ message?.message }}
+                                    </p>
+                            </div>
+                        </div>
+
+                        <div class="chat-footer">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group mb-0">
+                                        <input type="text" placeholder="Tape a message"
+                                            clas="form-control"
+                                            [(ngModel)]="messageText"
+                                            (keyup)="$event.keyCode === 13 && sendMessage(message.value)"
+                                            #message
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center align-self-center">
+                                    <button type="button" class="btn btn-sm btn-primary ml-2" (click)="sendMessage(message.value)">
+                                        <img src="assets/img/ic_send_18pt.png" alt="">
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

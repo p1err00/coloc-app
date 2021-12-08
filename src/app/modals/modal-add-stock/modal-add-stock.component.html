@@ -1,0 +1,24 @@
+<form class="form-group m-4">
+  <div class="mb-2 d-flex justify-content-between">
+    <label for="" class="form-label">Nom</label>
+    <input type="text" class="form-group" #name>
+  </div>
+  <div class="mb-3 d-flex justify-content-between">
+    <label for="" class="form-label">Quantite</label>
+    <input type="number" class="form-group" #quantity min="0">
+  </div>
+  <div class="mb-3">
+    <select class="custom-select" id="inputGroupSelect01">
+      <option value="imp.nom_i" *ngFor="let imp of importance" #importance>{{imp.nom_i}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <select class="custom-select" id="inputGroupSelect01">
+      <option value="cat.nom_ca" *ngFor="let cat of categorie" #importance>{{cat.nom_ca}}</option>
+    </select>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary "
+      (click)="saveModal(name.value, quantity.value, 'azeaze', 'azeaze')">Ajouter</button>
+  </div>
+</form>

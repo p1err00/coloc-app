@@ -1,0 +1,52 @@
+<form class="form-group m-4 p-2" [formGroup]="signupForm">
+    <div class="card-header mb-3">
+      <h3>Ajouter une personne</h3>
+      <input type="hidden" name="" value="{{ fromParent.id_t }}">
+    </div>
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="name" class="form-label">Nom*</label>
+      <input type="text" class="form-control w-50" [(ngModel)]="fromParent.nom_t" 
+      formControlName="nom_t"
+      [ngStyle]="{'border-color':nom_t?.hasError('required') && signupForm.controls.nom_t!.touched 
+                                    || ( nom_t?.hasError('pattern')) ? 'red' : ''}" #name/>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="" class="form-label">Date d'execution*</label>
+      <input type="date" name="prix" class="form-control w-50" [ngModel]="fromParent.date_exec_t | date:'yyyy-MM-dd'"
+      formControlName="date_exec_t"
+      [ngStyle]="{'border-color':date_exec_t?.hasError('required') && signupForm.controls.date_exec_t!.touched 
+                                    || (signupForm.controls.date_exec_t!.touched && date_exec_t?.hasError('pattern')) ? 'red' : ''}" #date_exec>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="" class="form-label">Date de fin*</label>
+      <input type="date" name="prix" class="form-control w-50" [ngModel]="fromParent.date_fin_t | date:'yyyy-MM-dd'"
+      formControlName="date_fin_t"
+      [ngStyle]="{'border-color':date_fin_t?.hasError('required') && signupForm.controls.date_fin_t!.touched 
+                                    || (date_fin_t?.hasError('pattern')) ? 'red' : ''}" #date_fin>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="" class="form-label">Description*</label>
+      <textarea type="text" name="prix" class="form-control w-50" [ngModel]="fromParent.desc_t"
+      formControlName="desc_t"
+      #desc></textarea>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between">
+      <label for="" class="form-label">Personne ciblée</label>
+      <select class="form-select" aria-label="Default select example" #personne 
+      (change)="selectChange( $event)">
+        <option value=''>...</option>
+        <option selected value="{{ fromParent.personne_t != '' ? fromParent.personne_t : '' }}">{{ fromParent.personne_t }}</option>
+        <option *ngFor="let user of options" ngModel="{{ user }}">{{ user }}</option>
+      </select>
+    </div>
+  
+    <div class="d-flex justify-content-center card-footer">
+      <button type="submit" class="btn btn-primary "
+      (click)="saveModal(name.value, date_exec.value, date_fin.value, desc.value, personne.value)"  
+      >Ajouter</button>
+    </div>
+    

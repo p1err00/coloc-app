@@ -1,0 +1,32 @@
+<div class="user-list-card">
+    <!-- [ngClass]="user?.username_user === selectedUser?.username_user && 'active'" -->
+
+    <div class="d-flex flex-row mb-3">
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+              <img src="assets/img/ic_sms_black_24dp.png" alt="">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+              <span class="dropdown-item" *ngFor="let user of usersList" (click)="createChannel(user)">
+                  {{ user.username_user}}
+                </span>
+            </div>
+          </div>
+    
+          <button type="button" class="btn btn-sm rounded ml-2" (click)="createGroup()">
+            <img src="assets/img/ic_group_add.png" alt="">
+        </button>
+    </div>
+
+    <div class="user-card" *ngFor="let channel of channelList">
+
+        <button type="button" class="btn btn-light w-100 mb-2" (click)="setChannel(channel)">
+            <p class="text-left ml-3 mt-2 channel-name">
+                {{ channel.nom }}
+            </p>
+            <p class="text-left">
+                Dernier message :
+            </p>
+        </button>
+    </div>
+</div>

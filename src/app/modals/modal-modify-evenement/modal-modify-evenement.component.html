@@ -1,0 +1,53 @@
+<form class="form-group m-4 p-2" [formGroup]="signupForm">
+    <div class="card-header mb-3">
+      <h3>Ajouter une personne</h3>
+      <input type="hidden" name="" value="{{ fromParent.id_e }}">
+    </div>
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="name" class="form-label">Nom*</label>
+      <input type="text" class="form-control w-50" [(ngModel)]="fromParent.nom_e"
+      formControlName="nom_e"
+      [ngStyle]="{'border-color':nom_e?.hasError('required') && signupForm.controls.nom_e!.touched 
+                                    || ( nom_e?.hasError('pattern')) ? 'red' : ''}" #name>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="" class="form-label">Date d'execution*</label>
+      <input type="date" name="prix" class="form-control w-50" [ngModel]="fromParent.date_exec_e | date:'yyyy-MM-dd'"
+      formControlName="date_exec_e"
+      [ngStyle]="{'border-color':date_exec_e?.hasError('required') && signupForm.controls.date_exec_e!.touched 
+                                    || (signupForm.controls.date_exec_e!.touched && date_exec_e?.hasError('pattern')) ? 'red' : ''}" #date_exec>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="" class="form-label">Date de fin*</label>
+      <input type="date" name="prix" class="form-control w-50" [ngModel]="fromParent.date_fin_e | date:'yyyy-MM-dd'"
+      formControlName="date_fin_e"
+      [ngStyle]="{'border-color':date_fin_e?.hasError('required') && signupForm.controls.date_fin_e!.touched 
+                                    || (date_fin_e?.hasError('pattern')) ? 'red' : ''}" #date_fin>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between form-group">
+      <label for="" class="form-label">Description*</label>
+      <textarea type="text" name="prix" class="form-control w-50" [(ngModel)]="fromParent.desc_e"
+      formControlName="desc_e"
+      [ngStyle]="{'border-color':desc_e?.hasError('required') && signupForm.controls.desc_e!.touched 
+                                    || (desc_e?.hasError('pattern')) ? 'red' : ''}" #desc></textarea>
+    </div>
+  
+    <div class="mb-2 d-flex justify-content-between">
+      <label for="" class="form-label">Personne ciblée</label>
+      <select class="form-select" aria-label="Default select example" #personne 
+      (change)="selectChange( $event)">
+        <option selected value="{{ fromParent.personne_e != '' ? fromParent.personne_e : '' }}">{{ fromParent.personne_e }}</option>
+        <option *ngFor="let user of options" value="{{ user }}">{{ user }}</option>
+      </select>
+    </div>
+  
+    <div class="d-flex justify-content-center card-footer">
+      <button type="submit" class="btn btn-primary "
+      (click)="saveModal(name.value, date_exec.value, date_fin.value, desc.value, personne.value)"  
+      >Ajouter</button>
+    </div>
+    
+  </form>

@@ -1,0 +1,26 @@
+<form class="m-4" [formGroup]="signupForm">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nom du vote :</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        formControlName="nom"
+        [ngStyle]="{'border-color':nom?.hasError('required') && signupForm.controls.nom!.touched 
+                                    || ( nom?.hasError('pattern')) ? 'red' : ''}">
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Choix" aria-label="Username"
+            aria-describedby="basic-addon1" 
+            [ngStyle]="{'border-color':boolChoice ? '' : 'red'}" #choice>
+        <button class="input-group-text" id="basic-addon1" (click)="addToChoiceList(choice.value)">+</button>
+    </div>
+    <div class="m-2 d-flex flex-column border rounded">
+        <span class="d-flex justify-content-between ml-4 mr-4 mt-2 mb-1" *ngFor="let choice of choiceList">
+            {{ choice }}
+            <button type="button" class="btn" (click)="deleteFromChoiceList(choice)">-</button>
+        </span>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="changeAnonyme()">
+        <label class="form-check-label" for="exampleCheck1" #anonyme>Anonyme</label>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="saveModal(choice.value)">Submit</button>
+</form>

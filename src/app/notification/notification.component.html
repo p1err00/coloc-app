@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        <h4>Notification</h4>
+    </div>
+
+    <div class="card-text m-3" *ngFor="let notif of notifAjout" #notif>
+        
+        <div class="d-flex flex-row justify-content-between" *ngFor="let user of usersNotif" #user>
+            {{notif.nom_notif}}
+
+            <span>{{ user.username_user }}</span>
+            <div class="d-flex flex-rowjustify-content-between">
+                <button type="button" class="btn btn-sm btn-success" (click)="accepteUser(notif, user)">Ajouter</button>
+                <button type="button" class="btn btn-sm btn-danger ml-2 "
+                    (click)="refuseUser(notif, user)">Supprimer</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card-text m-3" *ngFor="let notif of notifAutre">
+        <div class="d-flex flex-row justify-content-between" *ngFor="let user of usersNotif" #user>
+            {{ notif.nom_notif }}
+            <div class="d-flex flex-rowjustify-content-between">
+                <button type="button" class="btn btn-sm btn-light">Voir</button>
+                <button type="button" class="btn btn-sm btn-dark rounded-circle">X</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+
+    </div>
+</div>

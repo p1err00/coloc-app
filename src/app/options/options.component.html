@@ -1,0 +1,49 @@
+<div class="p-3 mx-auto">
+    <app-navbar></app-navbar>
+  </div>
+
+
+
+<h1 class="text-center">Options</h1>
+<div class="d-flex flex-column justify-content-between w-75 mx-auto">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Colocation</h2>
+        </div>
+        <div class="card-text p-2 d-flex flex-column">
+            <div class="d-flex flex-row">
+                <label for="nomColoc" class="form-control-label col-md-4">Nom colocation:</label>
+                <input type="text" class="form-control col-md-8" value="{{ currentColoc.nom_coloc }}"
+                [attr.disabled]="currentUser.admin_user == 1 ? null : ''" #nomColoc>
+            </div>
+            <div class="d-flex flex-row">
+                <label for="nbpersonneColoc" class="form-control-label col-md-4">Nombre personnes:</label>
+                <span #nbpersonneColoc>{{ currentColoc.nb_personnes_coloc }}</span>
+            </div>
+            <div class="d-flex flex-row"> 
+                <label for="dateCreationColoc" class="form-control-label col-md-4">Date de création:</label>
+                <span #dateCreationColoc>{{ currentColoc.date_creation_coloc }}</span>
+            </div>
+            <div class="d-flex flex-row">
+                <label for="loyerColoc" class="form-control-label col-md-4">Loyer:</label>
+                <input type="text" class="form-control col-md-8" value="{{ currentColoc.loyer_coloc }}€"
+                [attr.disabled]="currentUser.admin_user == 1 ? null : ''" #loyerColoc>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary float-right">Valider</button>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Options 2</h2>
+        </div>
+        <div class="card-text p-2">
+            Liste d'options
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary float-right">Valider</button>
+        </div>
+    </div>
+    <app-personnalisation></app-personnalisation>
+</div>

@@ -1,0 +1,125 @@
+
+<h1 class="text-center">
+    Budget
+</h1>
+<div class="d-flex flex-column w-75 mx-auto">
+    <div class="card w-100">
+        <div class="card-text d-flex flex-row justify-content-around p-3">
+            <div>
+                <h4>Loyer
+                    <h1>{{ loyer }}€</h1>
+                </h4>
+            </div>
+            <div>
+                <h4>Charges totales
+                    <h1 #charges>{{ totalCharges }}€</h1>
+                </h4>
+            </div>
+            <div>
+                <h4>Extra totales
+                    <h1 #extra>{{ totalExtras }}€</h1>
+                </h4>
+            </div>
+            <div>
+                <h4>Total
+                    <h1 #total>{{totalTotaux }}€</h1>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column m-4">
+
+        <div class="card mb-4 d-flex flex-row">
+
+            <div class="col-md-6">
+                <div class="card-header d-flex justify-content-between">
+                    <h2>Charges</h2>
+                    <button type="button" class="btn btn-success" (click)="addCharge()">Ajouter</button>
+                </div>
+                <div class="card-text">
+    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between col-auto" *ngFor="let product of products" #{{product.id}} #product>
+                            <div class="form-check col-md">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="product.select_cha == false" (change)="changeSelect(product)">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="product.select_cha == true" (change)="changeSelect(product)" checked>
+                                <label class="form-check-label col-md" for="flexCheckDefault">
+                                    <span>{{ product.nom_cha }}</span>
+                                </label>
+                              </div>
+                            
+                            <input type="number" class="form-control input-group-sm col-md-8" value="{{ product.valeur_cha }}" (change)="changePrice(product.id_cha, +price.value)" #price>
+                            <button type="button" class="btn btn-dark btn-sm ml-2" (click)="deleteCharges(product)"><img src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
+                        </li>
+    
+                    </ul>
+    
+                </div>
+    
+                <div class="card-footer d-flex">
+                    <button type="button" class="btn btn-dark mr-2" (click)="calculateCharges()">Calculer selection</button>
+                    <button type="button" class="btn btn-dark mr-2" (click)="calculateAllCharges()">Tout calculer</button>
+                    <h4>Total : {{ totalCharges }}</h4>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div style="display: block">
+                    <canvas baseChart
+                                [data]="chargesChartData"
+                                [labels]="chargesChartLabels"
+                                [chartType]="chargesChartType"
+                                [colors]="chargesChartColors"
+                    ></canvas>
+                  </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 d-flex flex-row">
+            
+            <div class="col-md-6">
+                <div class="card-header d-flex justify-content-between">
+                    <h2>Extras</h2>
+                    <button type="button" class="btn btn-success" (click)="addExtra()">Ajouter</button>
+                </div>
+                <div class="card-text">
+    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between" *ngFor="let extra of extras" #{{extra.id}} #extra>
+                            <div class="form-check col-md">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="extra.select_ex == false" (change)="changeSelectExtra(extra)">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="extra.select_ex == true" (change)="changeSelectExtra(extra)" checked>
+                                <label class="form-check-label col-md" for="flexCheckDefault">
+                                    <span>{{ extra.nom_ex }}</span>
+                                </label>
+                              </div>
+                            
+                            <input type="number" class="form-control input-group-sm  col-md-8" value="{{ extra.valeur_ex }}" (change)="changePrice(extra.id_ex, +price.value)" #price>
+                            <button type="button" class="btn btn-dark btn-sm ml-2" (click)="deleteExtras(extra)"><img src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
+                        </li>
+                    </ul>
+    
+                </div>
+    
+                <div class="card-footer d-flex">
+                    <button type="button" class="btn btn-dark mr-2" (click)="calculateExtra()">Calculer selection</button>
+                    <button type="button" class="btn btn-dark mr-2" (click)="calculateAllExtra()">Tout calculer</button>
+                    <h4>Total : {{ totalExtras }}</h4>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div style="display: block">
+                    <canvas baseChart
+                                [data]="extraChartData"
+                                [labels]="extraChartLabels"
+                                [chartType]="extraChartType"
+                                [colors]="extraChartColors"
+                    ></canvas>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+</div>

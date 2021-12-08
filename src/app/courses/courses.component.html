@@ -1,0 +1,192 @@
+<div class="p-3 mx-auto">
+  <app-navbar></app-navbar>
+</div>
+
+<div class="d-flex flex-row justify-content-between">
+  
+  <aside class="d-flex flex-column mt-3 ml-3 mb-4">
+    
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 (click)="showDernierAjout = !showDernierAjout">
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapseDernierAjout"
+            aria-expanded="true" aria-controls="collapseDernierAjout" >
+            
+            <img *ngIf="!showDernierAjout" src="assets/img/ic_arrow_drop_down_36pt.png" alt="" data-toggle="collapse"
+              data-target="#collapseDernierAjout" aria-expanded="true" aria-controls="collapseDernierAjout">
+
+            <img *ngIf="showDernierAjout" src="assets/img/ic_arrow_drop_up_black_18dp.png" alt=""
+              data-toggle="collapse" data-target="#collapseDernierAjout" aria-expanded="true"
+              aria-controls="collapseDernierAjout">
+              
+          </button>
+          Dernier ajout
+        </h4>
+      </div>
+
+      <div class="card-text">
+        <div class="collapse" id="collapseDernierAjout">
+          <span href="#" class="list-group-item list-group-item-action text-center" aria-current="true"
+            (click)="addToList(item)" *ngFor="let item of lastBuy">
+            {{ item.nom_cou }}
+            <!-- <span>{{ item.last_buy_cou }}</span> -->
+          </span>
+  
+        </div>
+      </div>
+      <div class="card-footer">
+
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 class="">
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsePlusAjoute"
+            aria-expanded="true" aria-controls="collapsePlusAjoute" (click)="showPlusAJoute = !showPlusAJoute">
+            <img *ngIf="!showPlusAJoute" src="assets/img/ic_arrow_drop_down_36pt.png" alt="" data-toggle="collapse"
+              data-target="#collapsePlusAjoute" aria-expanded="true" aria-controls="collapsePlusAjoute">
+            <img *ngIf="showPlusAJoute" src="assets/img/ic_arrow_drop_up_black_18dp.png" alt="" data-toggle="collapse"
+              data-target="#collapsePlusAjoute" aria-expanded="true" aria-controls="collapsePlusAjoute">
+          </button>
+          Plus ajoutés
+        </h4>
+      </div>
+
+      <div class="card-text">
+        <div class="collapse" id="collapsePlusAjoute">
+          <span href="#" class="list-group-item list-group-item-action d-flex justify-content-between border-top-0"
+            aria-current="true" (click)="addToList(item)" *ngFor="let item of moreBuy" #item>
+            {{item.nom_cou}}
+            <span>{{ item.nb_buy_cou }}</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 class="">
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapseHistorique"
+            aria-expanded="true" aria-controls="collapseHistorique" (click)="showHistorique = !showHistorique">
+            <img *ngIf="!showHistorique" src="assets/img/ic_arrow_drop_down_36pt.png" alt="" data-toggle="collapse"
+              data-target="#collapseHistorique" aria-expanded="true" aria-controls="collapseHistorique">
+            <img *ngIf="showHistorique" src="assets/img/ic_arrow_drop_up_black_18dp.png" alt="" data-toggle="collapse"
+              data-target="#collapseHistorique" aria-expanded="true" aria-controls="collapseHistorique">
+          </button>
+          Historique
+        </h4>
+      </div>
+
+      <div class="card-text">
+        <div class="collapse" id="collapseHistorique">
+          <div href="#" class="list-group-item list-group-item-action d-flex justify-content-around border-top-0"
+            (click)="addToList(item)" *ngFor="let item of courses">
+  
+            <div #item>
+  
+  
+              <span>{{item.nom_cou}}</span>
+              <span>{{ item.prix_cou }}</span>
+              <span>{{ item.nb_buy_cou }}</span>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+
+      </div>
+    </div>
+  </aside>
+  
+  <div class="d-flex flex-column w-50">
+    
+    <div class=" d-flex flex-row justify-content-between mr-4 w-100">
+      <div>
+        <h1 class="text-center border-bottom mb-4">Liste</h1>
+      </div>
+      
+      <div class="d-flex flex-column mr-4">
+        
+        <h2 class="bg-light">
+          <img src="assets/img/user_black.png" alt="">
+          De corvée :
+        </h2>
+  
+        <select name="" id="" class="form-control " (change)="selectChange($event)"
+          *ngIf="{'border-color': currentUserCourse == '' ? 'red' : 'red'}">
+          <option value="" disabled selected>- Selection -</option>
+          <option *ngFor="let user of users" value="{{ user.username_user }}">{{ user.username_user }}</option>
+        </select>
+  
+        <button type="button" class="btn btn-sm btn-default bg-secondary " (click)="changeUserCourse()">
+          <img src="/assets/img/ic_forward_black_24dp.png" alt="" />
+        </button>
+  
+      </div>
+    </div>
+  
+    <div class="d-flex flex-row justify-content-center">
+  
+      <div class="d-flex flex-row justify-content-between pr-4 mt-4">
+  
+        <div class="list-group-flush mr-4">
+  
+          <div class="d-flex flex-row justify-content-between">
+            <button type="button" class="btn btn-secondary mb-4" (click)="openModalAdd()">
+              <img src="assets/img/ic_add_circle_outline_white.png" alt=""> Ajouter
+            </button>
+            <button type="button" class="btn btn-danger mb-4" (click)="doneCourse()">
+              <img src="assets/img/ic_delete_forever_black_24dp.png" alt=""> Fait
+            </button>
+          </div>
+  
+  
+          <table class="table table-hover">
+            <thead class="thead table-secondary">
+              <tr #item>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">prix</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of currentCourses">
+                <th scope="row">1</th>
+                <td>{{item.nom_cur_cou}}</td>
+                <td>{{item.prix_cur_cou}}</td>
+                <td>
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-light"><img src="assets/img/modify_black.png" alt=""></button>
+                    <button type="button" class="btn btn-dark" (click)="deleteItemCoursesList(item)"><img
+                        src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+  
+        <div class="d-flex justify-content-between w-50">
+          
+  
+          
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+
+  <div class="d-flex w-25">
+    <app-chat class="mr-3 w-100"></app-chat>
+  </div>
+</div>

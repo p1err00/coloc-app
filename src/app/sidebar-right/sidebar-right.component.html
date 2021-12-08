@@ -1,0 +1,6 @@
+<div class="card border-0 d-flex flex-row m-2" *ngFor="let notif of notifs">
+    <span>
+        <img src="assets/img/ic_highlight_off_black_18dp.png" alt="" class="float-right" (click)="deleteNotif(notif)"/>
+        {{ notif.desc_notif }}
+    </span>
+</div>

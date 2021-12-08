@@ -1,0 +1,50 @@
+<form action="">
+    <div class="modal-header">
+        <h2 class="modal-title">{{ fromParent.name }}</h2>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal(0)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="name" class="form-group d-flex justify-content-between">
+            <label for="name" class="border-left pl-3">Nom</label>
+            <input type="text" value="{{fromParent.nom_con}}" #name />
+            <input type="hidden" value="{{fromParent.id_con}}" #id>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <label for="quantite" class="border-left pl-3">Quantite</label>
+            <input type="number" value="{{ fromParent.quantite_con }}" min="0" #quantite />
+
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <label for="importance" class="border-left pl-3">Importance</label>
+            <select #importance class="form-control-sm">
+                <option value="Essentiel">Essentiel</option>
+                <option value="Important">Important</option>
+                <option value="Envie">Envie</option>
+                <option value="Peu important">Peu important</option>
+                <option value="Optionnel">Optionnel</option>
+            </select>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+            <label for="categorie" class="border-left pl-3">Categorie</label>
+            <select #categorie class="form-control-sm">
+                <option value="Consommable">Consommable</option>
+                <option value="Ustensiles">Ustensiles</option>
+                <option value="Produits menages">Produits menages</option>
+                <option value="Equipement">Equipement</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal(0)">Close</button>
+        <button type="button" class="btn btn-primary"
+            (click)="saveNewItem(id.value, name.value, quantite.value, importance.value, categorie.value)">Save
+            changes</button>
+    </div>
+</form>

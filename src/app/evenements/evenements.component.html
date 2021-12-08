@@ -1,0 +1,71 @@
+<div class="p-3 mx-auto">
+    <app-navbar></app-navbar>
+</div>
+
+<div class="d-flex flex-row justify-content-between">
+
+    <aside class="d-flex flex-column bg-light mt-3 ml-3 mb-4">
+        <div class="card">
+            <div class="card-header d-flex flex-column">
+                <h2>Evenements recurrents</h2>
+                <button type="button" class="btn btn-sm rounded btn-secondary">
+                    <img src="assets/img/ic_add.png" alt="">
+                </button>
+            </div>
+            <div class="card-body">
+
+            </div>
+            <div class="card-footer">
+                
+            </div>
+        </div>
+    </aside>
+
+    <div class="d-flex flex-column w-50">
+
+        <div class="d-flex flex-row justify-content-between w-100">
+
+            <div>
+                <h1 class="text-center border-bottom mb-4">Evenements</h1>
+            </div>
+
+            <ul class="nav justify-content-center mb-4 pb-4">
+                <li class="nav-item mr-4">
+                    <button class="btn btn-secondary" (click)="openModalAdd()">Ajouter</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="d-flex row justify-content-start">
+            <div class=" w-25 m-4" *ngFor="let item of evenements" #item>
+                <div class="card-header">
+                    <p>{{item.nom_e}}</p>
+                    <span>{{item.date_exec_e | date:'dd/mm/yyyy'}}</span>
+                </div>
+
+                <div class="card-text">
+                    {{item.desc_e}}
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-light" (click)="openModalModif(item)">
+                            <img src="assets/img/modify_black.png" alt="">
+                        </button>
+                        <button type="button" class="btn btn-dark" (click)="openModalDelete(item)">
+                            <img src="assets/img/ic_delete_forever_white_24dp.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="d-flex w-25">
+        <app-chat class="mr-3 w-100"></app-chat>
+    </div>
+</div>
