@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header d-flex flex-column">
+        <h2>Taches recurentes</h2>
+        <div>
+            <button type="button" class="btn btn-sm rounded btn-secondary" (click)="createTacheRecurente()">
+                <img src="assets/img/ic_add.png" alt="">
+            </button>
+        </div>
+    </div>
+
+    <div class="card-text" *ngFor="let recurent of recurentTaches" >
+        <button type="button" class="btn w-100 bg-light text-wrap mt-2 d-flex justify-content-between" (click)="convertToAddToTache(recurent)">
+            {{ recurent.nom}}
+            <button class="btn text-danger"(click)="deleteTacheRecurente(recurent, $event)">X</button>
+        </button>
+    </div>
+
+    <div class="card-footer mt-3">
+
+    </div>
+</div>

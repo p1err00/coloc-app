@@ -1,0 +1,32 @@
+<div class="d-flex flex-column m-2">
+
+
+  <h3>Depenses</h3>
+  <div style="display: block;">
+    <canvas baseChart [data]="chargesCharttData" [labels]="chargesCharttLabels" [chartType]="chargesCharttType"
+      [options]="chargesCharttOptions" [plugins]="chargesCharttPlugins" [legend]="chargesCharttLegend"
+      [colors]="chargesCharttColors">
+    </canvas>
+  </div>
+</div>
+
+
+<div class="w-50">
+  <h3>Taches</h3>
+
+  <div class="chart-wrapper">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+      [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="chargesCharttColors">
+    </canvas>
+  </div>
+</div>
+
+<div class="w-50">
+  <h3>Evenements</h3>
+
+  <div class="chart-wrapper">
+    <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+      [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+</div>

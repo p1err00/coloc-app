@@ -1,0 +1,7 @@
+<div class="d-flex flex-column m-4">
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="nom" placeholder="Nom de l'evenement" #name>
+    </div>
+    <button type="button" class="btn" (click)="saveModal(name.value)">Ajouter</button>
+</div>

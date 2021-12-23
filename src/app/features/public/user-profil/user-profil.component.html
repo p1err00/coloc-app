@@ -1,0 +1,22 @@
+<h1 class="text-center mb-4">Compte</h1>
+<div class="d-flex flex-row justify-content-around mx-auto mt-4">
+
+    <div class="card w-100">
+        <div class="card-header">
+            <h4>Informations</h4>
+        </div>
+        <div class="card-text d-flex flex-column p-2">
+            
+            <span>Nom : {{ currentUser.lastname_user }}</span>
+            <span>Prenom : {{ currentUser.firstname_user }}</span>
+            <span>Pseudo : {{ currentUser.username_user }}</span>
+            <span>Mail : {{ currentUser.email_user }}</span>
+            <span>Tel : {{ currentUser.tel_user }}</span>
+            <span>Date de naissance : {{ currentUser.date_of_birth_user | date: 'yyyy-mm-dd' }}</span>
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+</div>
+<app-depenses></app-depenses>

@@ -1,3 +1,21 @@
 <body>
-    <router-outlet></router-outlet>
+    <div class="w-100 p-3 mx-auto" *ngIf="router.url != '/log-in'">
+        <app-navbar [currentUser]="currentUser"></app-navbar>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+
+        <aside class="d-flex flex-column mt-3 ml-3" *ngIf="router.url != '/log-in'">
+            <app-aside [currentUser]="currentUser"></app-aside>
+        </aside>
+
+        <div class="mx-auto w-50">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div class="d-flex w-25"  *ngIf="router.url != '/log-in' && currentUser">
+            <app-chat class="mr-3 w-100" [currentUser]="currentUser"></app-chat>
+        </div>
+    </div>
+
 </body>

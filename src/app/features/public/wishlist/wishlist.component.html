@@ -1,0 +1,43 @@
+<div class="d-flex flex-column">
+  <div class="d-flex flex-rox justify-content-between mb-4">
+
+    <div>
+
+      <h1 class="border-bottom">WishList</h1>
+    </div>
+
+    <button class="btn btn-secondary">Ajouter</button>
+
+  </div>
+
+
+  <table class="table table-hover">
+    <thead class="thead table-secondary">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Url</th>
+        <th scope="col">Description</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of wishlist">
+      <tr>
+        <th scope="row">1</th>
+        <td>{{item.nom_w}}</td>
+        <td>{{item.prix_w}}</td>
+        <td><a href="{{item.url_w}}">{{item.url_w}}</a></td>
+        <td>{{item.desc_w}}</td>
+        <td>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-light"><img src="assets/img/modify_black.png" alt=""></button>
+            <button type="button" class="btn btn-dark"><img src="assets/img/ic_delete_forever_white_24dp.png"
+                alt=""></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

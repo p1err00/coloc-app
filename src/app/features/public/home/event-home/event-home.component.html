@@ -1,0 +1,28 @@
+<div class="card w-50 ml-2 text-center w-100">
+    <div class="card-header" (click)="redirectEvent()" role="button">
+      <h3 class="card-title text-center">
+        <img src="assets/img/ic_whatshot_black_24dp.png" alt=""> Evenements
+      </h3>
+    </div>
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">5 derniers ajouts</h6>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{event.nom_e}}</td>
+            <td>{{event.date_exec_e | date:'yyyy-MM-dd'}}</td>
+            <td>{{event.desc_e}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>

@@ -20,44 +20,30 @@ import { ChannelUserService } from '../services/channel-user.service';
   styleUrls: ['./chat.component.scss'],
   providers:[ChatService]
 })
-export class ChatComponent implements OnInit, AfterViewInit {
+export class ChatComponent implements OnInit {
 
-  currentUser !: User;
+  @Input() currentUser !: User;
 
   messageText!:string;
 
   currentChannel !: Channel_user;
   messageArray : Message[] = [];
-  //selectedUser !: User; 
   selectedUserBool : Boolean = false;
 
   userList : User[] = [];
-
+  userSendToAll : Channel_user[] = [];
 
   constructor(
     private _chatService : ChatService,
+    private _channelUserService : ChannelUserService,
     private _authService : AuthService,
     private _messageService : MessageService,
   ) {
-    
-      let tokenInfo = this.getDecodedAccessToken(JSON.stringify(localStorage.getItem("access_token")));
-
-    let id = tokenInfo.id;
-
-    this._authService.getUserProfile(id).subscribe(res => {
-      this.currentUser = res;
-    });
-    
   }
 
   ngOnInit(): void {
     this.getUsers();
   }
-
-  ngAfterViewInit(){
-
-  }
-
   getUsers(){
     this._authService.getAll().subscribe( resp => {
       this.userList = resp;
@@ -78,6 +64,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
       this.messageArray = resp;
     });
   }
+
   join(roomId : number){
     this._chatService.joinRoom({user:this.currentUser.username_user, room:roomId});
   }
@@ -97,32 +84,28 @@ export class ChatComponent implements OnInit, AfterViewInit {
       file : '',
       seen : true
     }    
-
+        
     this._messageService.create(newMessage);
+
     this._chatService.sendMessage({
-      user:this.currentUser.username_user, 
-      //room:this.roomId, 
       message: this.messageText
     });
+    
+    this.currentChannel.last_message = newMessage.message;
     this.messageText = '';
     
+    this._channelUserService.getById(this.currentChannel.id_channel).subscribe( resp => {
+      this.userSendToAll = resp;
+    });
+    
+    this.sendForAll(this.userSendToAll);
     this.getMessage(this.currentChannel.id_channel);
   }
 
-  leaveRoom(){
-    // this.channel = {
-    //   id_channel : 0,
-    //   nom_channel : '',
-    //   date_creation : new Date()
-    // }    
-  }
-
-  getDecodedAccessToken(token: string): any {
-    try {
-      return jwt_decode(token);
-    }
-    catch (Error) {
-      return null;
+  sendForAll(user : Channel_user[]){
+    for(let res of user ){
+      this._channelUserService.updateById(res.id_channel, res.id_user, this.currentChannel);
+      
     }
   }
 }

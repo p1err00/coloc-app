@@ -1,0 +1,50 @@
+<div class="card d-flex flex-row mb-4">
+    <div class="card-body">
+      <h3 class="border-bottom pb-2">Depenses</h3>
+
+      <div class="border p-2 d-flex flex-row">
+
+        <div class="d-flex flex-column w-50">
+          <h3 class="mb-1">Salaires / mois</h3>
+          <span class="pl-2" *ngIf="currentUser.salaire">
+            {{ currentUser.salaire}}
+          </span>
+          <h3>Partie loyer</h3>
+          <span class="pl-2" *ngIf="currentUser.loyer_user">
+            {{ currentUser.loyer_user}}
+          </span>
+          <h3>Charges</h3>
+          <span class="pl-2" *ngIf="totalCharges">
+            {{ totalCharges }}
+          </span>
+          <h3>Extras</h3>
+          <span class="pl-2" *ngIf="totalExtras">
+            {{ totalExtras }}
+          </span>
+          <h3>Abonnements</h3>
+          <span class="pl-2" *ngIf="totalAbonnement">
+            {{ totalAbonnement }}
+          </span>
+          <h3>A rembourser</h3>
+          <span class="pl-2" *ngIf="totalRemboursement">
+            {{ totalRemboursement }}
+          </span>
+        </div>
+
+        <div class="w-100">
+          Charts
+          <div>
+            <canvas baseChart
+              [data]="chargesCharttData"
+              [labels]="chargesCharttLabels"
+              [chartType]="chargesCharttType"
+              [options]="chargesCharttOptions"
+              [plugins]="chargesCharttPlugins"
+              [legend]="chargesCharttLegend"
+              [colors]="chargesCharttColors">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-header d-flex flex-column">
+        <h2>Evenements recurrents</h2>
+        <button type="button" class="btn btn-sm rounded btn-secondary" (click)="openModalAddRecurent()">
+            <img src="assets/img/ic_add.png" alt="">
+        </button>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn text-wrap w-100 d-felx flex-row justify-content-between" 
+        *ngFor="let recurent of recurent_event"
+        (click)="addToEvent(recurent)">
+            {{ recurent.nom }}
+            <button type="button" class="btn text-danger" (click)="deleteRecurentEvent()">X</button>
+        </button>
+    </div>
+    <div class="card-footer">
+        
+    </div>
+</div>

@@ -4,5 +4,6 @@ export interface CourseCourante{
     nb_buy_cur_cou : number,
     last_buy_cur_cou : Date,
     prix_cur_cou : number,
-    id_coloc : number
+    id_coloc : number,
+    done : boolean
 }

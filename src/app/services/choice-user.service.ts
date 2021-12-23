@@ -14,17 +14,17 @@ export class ChoiceUserService {
     private http : HttpClient
   ) { }
 
-  getAll(): Observable<Choice_user[]>{
-    return this.http.get<Choice_user[]>(this.baseUrl+"Choice_user");
+  getAll( id : number): Observable<Choice_user[]>{
+    return this.http.get<Choice_user[]>(this.baseUrl+`choice_user/${id}`);
   }
 
   getById(id : number) : Observable<Choice_user[]>{
-    return this.http.get<Choice_user[]>(`${this.baseUrl}Choice_user/${id}`);
+    return this.http.get<Choice_user[]>(`${this.baseUrl}choice_user/${id}`);
   }
 
   create(data : any) {
     console.log(data);      
-    return this.http.post(this.baseUrl+"Choice_user", data).subscribe(
+    return this.http.post(this.baseUrl+"choice_user", data).subscribe(
       (val) => {
           console.log("POST call successful value returned in body", 
                       val);
@@ -38,7 +38,7 @@ export class ChoiceUserService {
   }
 
   update(id : number, data : any){
-    return this.http.put(`${this.baseUrl}Choice_user/${id}`, data).subscribe(
+    return this.http.put(`${this.baseUrl}choice_user/${id}`, data).subscribe(
       (val) => {
           console.log("POST call successful value returned in body", 
                       val);
@@ -51,8 +51,8 @@ export class ChoiceUserService {
       });
   }
 
-  delete(id : number){
-    return this.http.delete(`${this.baseUrl}Choice_user/${id}`).subscribe(
+  delete(id : string, id_user : number){
+    return this.http.delete(`${this.baseUrl}choice_user/${id}/${id_user}`).subscribe(
       (val) => {
           console.log("POST call successful value returned in body", 
                       val);

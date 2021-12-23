@@ -16,16 +16,20 @@
           <button type="button" class="btn btn-sm rounded ml-2" (click)="createGroup()">
             <img src="assets/img/ic_group_add.png" alt="">
         </button>
+
+        <button type="button" class="btn btn-outline">Reload</button>
     </div>
 
     <div class="user-card" *ngFor="let channel of channelList">
 
         <button type="button" class="btn btn-light w-100 mb-2" (click)="setChannel(channel)">
+            <button type="button" class="btn text-danger float-right" (click)="deleteChannel($event, channel)">X</button>
             <p class="text-left ml-3 mt-2 channel-name">
                 {{ channel.nom }}
             </p>
             <p class="text-left">
                 Dernier message :
+                {{ channel.last_message }}
             </p>
         </button>
     </div>

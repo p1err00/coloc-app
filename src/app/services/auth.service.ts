@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
 import { Colocation } from '../models/colocation';
 import { NotificationService } from './notification.service';
 import { ColocationService } from './colocation.service';
-import { DatePipe } from '@angular/common';
 import { AlertService } from './alert.service';
+import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,6 @@ export class AuthService {
     private http: HttpClient,
     private httpNotif: NotificationService,
     private httpColoc: ColocationService,
-    private datePipe: DatePipe,
     public alertService: AlertService,
     public router: Router
   ) { }
@@ -45,14 +45,12 @@ export class AuthService {
     return this.http.post<any>(`${this.endpoint}/signin`, user).subscribe(
       (val) => {
 
-
         localStorage.setItem('access_token', val.token)
-        this.getUserProfile(val.result[0].id_user).subscribe(async (res) => {
-          console.log('azeaze');
+        this.getUserProfile(val.result[0].id_user).subscribe((res) => {
 
           this.currentUser = res;
           if (this.currentUser.id_coloc == 0) {
-            alert('pas coloc')
+
             this.router.navigate(['/select-coloc']);
 
           } else {
@@ -167,5 +165,15 @@ export class AuthService {
       () => {
         console.log("The POST observable is now completed.");
       });
+  }
+
+  getDecodedAccessToken(): any {
+    let token = this.getToken();
+    try {
+      return jwt_decode(token!);
+    }
+    catch (Error) {
+      return null;
+    }
   }
 }

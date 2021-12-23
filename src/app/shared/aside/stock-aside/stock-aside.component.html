@@ -1,0 +1,49 @@
+<div class="card w-100">
+    <div class="card-header">
+        <h3 class="pb-2">
+            <img src="assets/img/ic_priority_high_black_24dp.png" alt="">Importance
+        </h3>
+        <div>
+            <button class="btn btn-sm btn-primary" href="#" (click)="openModalModifImportance()">
+                <img src="assets/img/ic_add.png" alt="">
+            </button>
+        </div>
+    </div>
+    <div class="card-text">
+        <ul class="list-group-flush">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let imp of importance">
+                <span>{{imp.nom_i}}</span>
+                <span>{{imp.index_i}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="card-footer">
+
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h3 class="">
+            <img src="assets/img/ic_featured_play_list.png" alt=""> Categorie
+        </h3>
+        <div>
+            <button class="btn btn-sm btn-primary" href="#" (click)="openModalAddCategorie()">
+                <img src="assets/img/ic_add.png" alt="">
+            </button>
+        </div>
+    </div>
+
+    <div class="card-text">
+        <ul class="list-group-flush">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let cat of categorie">
+                <span>{{cat.nom_ca}}</span>
+                <span>{{cat.index_ca}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="card-footer">
+
+</div>

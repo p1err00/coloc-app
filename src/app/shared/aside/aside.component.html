@@ -1,0 +1,26 @@
+<div>
+    <div *ngIf="router.url === '/home'">
+        <app-home-aside [currentUser]="currentUser"></app-home-aside>
+    </div>
+    <div *ngIf="router.url === '/taches'">
+        <app-tache-aside [currentUser]="currentUser"></app-tache-aside>
+    </div>
+    <div *ngIf="router.url === '/evenements'">
+        <app-event-aside [currentUser]="currentUser"></app-event-aside>
+    </div>
+    <div *ngIf="router.url === '/courses'">
+        <app-course-aside></app-course-aside>
+    </div>
+    <div *ngIf="router.url === '/stock'">
+        <app-stock-aside></app-stock-aside>
+    </div>
+    <div *ngIf="router.url === '/stockage'">
+        <app-stockage-aside></app-stockage-aside>
+    </div>
+    <div *ngIf="router.url === '/statistique'">
+        <app-statistique-aside></app-statistique-aside>
+    </div>
+    <div *ngIf="router.url === '/wishlist'">
+        <app-wishlist-aside [currentUser]="currentUser"></app-wishlist-aside>
+    </div>
+</div>

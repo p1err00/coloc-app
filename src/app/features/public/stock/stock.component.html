@@ -1,0 +1,78 @@
+<div class="d-flex flex-column">
+
+    <div class="d-flex flex-row justify-content-between">
+        <div>
+            <h1 class="border-bottom">Stock</h1>
+        </div>
+        <ul class="nav justify-content-center mb-4 pb-4">
+            <li class="nav-item mr-4">
+                <button class="btn btn-primary" href="#" (click)="openModalAdd()">
+                    <img src="assets/img/ic_add.png" alt=""> Ajouter
+                </button>
+            </li>
+            <li class="nav-item mr-4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/img/ic_list_white_24dp.png" alt="">
+                        Trier par
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <button class="dropdown-item" href="#" (click)="sortByName()">Nom</button>
+                        <button class="dropdown-item" href="#" (click)="sortByCategorie()">Categorie</button>
+                        <button class="dropdown-item" href="#" (click)="sortByImportance()">Importance</button>
+                        <button class="dropdown-item" href="#" (click)="sortByDatePeremption()">Date peremption</button>
+                        <button class="dropdown-item" href="#" (click)="sortByDateAchat()">Date achat</button>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item mr-4">
+                <button class="btn btn-danger">
+                    <img src="assets/img/ic_delete_white_24dp.png" alt=""> Vider</button>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex flex-row">
+
+        <div class="w-100 main">
+            <!-- [ngClass]="{'list-group-item-danger' : product.quantite_con == 0}" -->
+            <div *ngFor="let product of stocks; index as i"
+                class="p-4 card d-flex flex-row w-100 justify-content-around mb-3 text-wrap"
+                [ngClass]="{'list-group-item-danger' : product.quantite_con == 0}">
+
+                <span #id>
+                    <h5>{{ i }}</h5>
+                </span>
+                <span #name>
+                    <h5>{{ product.nom_con }}</h5>
+                </span>
+                <span #quantite>
+                    <h5>x{{ product.quantite_con }}</h5>
+                </span>
+                <span #importance>
+                    <h5>{{ product.importance }}</h5>
+                </span>
+                <span #categorie>
+                    <h5>{{ product.categorie }}</h5>
+                </span>
+                <span #date_achat>
+                    <h6>{{ product.date_achat_con | date:'yyyy-MM-dd' }}</h6>
+                </span>
+                <span #date_peremption>
+                    <h6>{{ product.date_peremption_con | date:'yyyy-MM-dd' }}</h6>
+                </span>
+                <span>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-light" (click)="openModalModif(product)"><img
+                                src="assets/img/modify_black.png" alt=""></button>
+                        <button type="button" class="btn btn-dark" (click)="openModalDelete(product)"><img
+                                src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
+                    </div>
+                </span>
+
+            </div>
+        </div>
+
+    </div>
+</div>

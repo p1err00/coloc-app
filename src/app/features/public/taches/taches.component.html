@@ -1,0 +1,108 @@
+
+
+    <div class="d-flex flex-column">
+
+        <div class="d-flex flex-row justify-content-between mx-auto w-100">
+            <h1 class="text-center border-bottom">Taches</h1>
+            <button class="btn btn-secondary" (click)="openModalAdd()">Ajouter</button>
+        </div>
+
+
+        <div class="d-flex row justify-content-start">
+
+            <h3 class="">Defini</h3>
+
+            <div class="w-25 m-4" *ngFor="let item of tachesDefini" #item>
+
+                <div class="card-header bg-success">
+                    <input type="hidden" name="id" value="{{ item.id_t }}">
+                    <p>{{item.nom_t}}
+                        <input *ngIf="item.done_t == 1" type="checkbox" name="done" id="done" checked
+                            (click)="isChecked(item)" #checkbox>
+                        <input *ngIf="item.done_t == 0" type="checkbox" name="done" id="done" (click)="isChecked(item)"
+                            #checkbox>
+                    </p>
+                    {{item.date_exec_t | date:'yyyy-MM-dd'}}
+                </div>
+
+                <div class="card-text">
+                    {{item.personne_t}}
+                </div>
+
+                <div class="card-footer bg-success">
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm btn-light" (click)="openModalModif(item)">
+                            <img src="assets/img/modify_black.png" alt="">
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark" (click)="openModalDeleteTacheDefini(item)">
+                            <img src="assets/img/ic_delete_forever_white_24dp.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex row justify-content-start">
+            <h3 class="">Non defini</h3>
+
+            <div class="rounded w-25 m-4" *ngFor="let item of tachesNonDefini" #item>
+                <div class="card-header bg-danger">
+                    <p>
+                        {{item.nom_t}}
+                    </p>
+                    {{item.date_exec_t | date:'yyyy-MM-dd'}}
+                </div>
+
+                <div class="card-text d-flex flex-row justify-content-between">
+                    <div [ngStyle]="{'border-color': currentUserTache == '' ? 'red' : 'red' }" class=" w-75">
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="selectChange($event)">
+                            <option value='' selected>...</option>
+                            <option *ngFor="let user of users" value="{{ user.username_user }}">
+                                {{ user.username_user }}
+                            </option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-default bg-secondary "
+                        (click)="setUserToTache(item)">
+                        <img src="/assets/img/ic_forward_black_24dp.png" alt="" />
+                    </button>
+                </div>
+                <div class="card-footer bg-danger">
+                    <div class="d-flex justify-content-between">
+
+                        <button type="button" class="btn btn-sm btn-light" (click)="openModalModif(item)">
+                            <img src="assets/img/modify_black.png" alt="">
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark"><img
+                                src="assets/img/ic_delete_forever_white_24dp.png" alt=""
+                                (click)="openModalDeleteTacheNonDefini(item)"></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex row justify-content-start">
+            <h3 class="">Fait</h3>
+            <div class="w-25 m-4"*ngFor="let item of tachesFaites">
+                <div class="card-header" >
+                    <p>{{item.nom_t}}</p>
+                    {{item.date_exec_t | date:'yyyy-MM-dd'}}
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm btn-light" (click)="addToTacheNonDefini(item)">
+                            <img src="assets/img/ic_add.png" alt=""></button>
+                        <button type="button" class="btn btn-sm btn-dark"
+                            (click)="openModalDeleteTacheFaite(item)">
+                            <img src="assets/img/ic_delete_forever_white_24dp.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+    </div>

@@ -10,5 +10,6 @@ export interface User{
     tel_user: number,
     id_coloc : number,
     loyer_user: number,
-    admin_user : number
+    admin_user : number,
+    salaire : number
 }

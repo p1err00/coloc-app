@@ -5,5 +5,6 @@ export default interface Vote {
     date_creation : Date,
     is_anonyme : boolean,
     nb_response : number,
-    id_coloc : number
+    id_coloc : number,
+    timer : number
 }

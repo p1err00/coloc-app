@@ -1,33 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatComponent } from './chat/chat.component';
-import { CoursesComponent } from './courses/courses.component';
-import { DepensesComponent } from './depenses/depenses.component';
-import { EvenementsComponent } from './evenements/evenements.component';
-import { HomeComponent } from './home/home.component';
-import { OptionsComponent } from './options/options.component';
-import { PersonnalisationComponent } from './personnalisation/personnalisation.component';
+import { CoursesComponent } from './features/public/courses/courses.component';
+
 import { SelectColocComponent } from './select-coloc/select-coloc.component';
-import { AuthGuard } from './services/auth.guard';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { StatistiquesComponent } from './statistiques/statistiques.component';
-import { StockComponent } from './stock/stock.component';
-import { StockageComponent } from './stockage/stockage.component';
-import { TachesComponent } from './taches/taches.component';
-import { UserProfilComponent } from './user-profil/user-profil.component';
-import { VoteComponent } from './vote/vote.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
+import { SigninComponent } from './features/auth/signin/signin.component';
+import { SignupComponent } from './features/auth/signup/signup.component';
+import { HomeComponent } from './features/public/home/home.component';
+import { TachesComponent } from './features/public/taches/taches.component';
+import { EvenementsComponent } from './features/public/evenements/evenements.component';
+import { WishlistComponent } from './features/public/wishlist/wishlist.component';
+import { PersonnalisationComponent } from './features/public/personnalisation/personnalisation.component';
+import { OptionsComponent } from './features/public/options/options.component';
+import { DepensesComponent } from './features/public/depenses/depenses.component';
+import { StatistiquesComponent } from './features/public/statistiques/statistiques.component';
+import { StockageComponent } from './features/public/stockage/stockage.component';
+import { VoteComponent } from './features/public/vote/vote.component';
+import { UserProfilComponent } from './features/public/user-profil/user-profil.component';
+import { StockComponent } from './features/public/stock/stock.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/log-in', pathMatch: 'full' },
+  {path : 'features', 
+  loadChildren: () => import('./features/features.module').then(m => {
+    m.FeaturesModule
+  })},
+
+
+
   { path: 'select-coloc', component: SelectColocComponent },
   { path: 'log-in', component: SigninComponent },
   { path: 'sign-up', component: SignupComponent },
-  { path: 'user-profile', component: UserProfilComponent, canActivate: [AuthGuard] },
-  {path: 'stock', component: StockComponent},
   {path: 'courses', component: CoursesComponent},
+  {path: 'stock', component: StockComponent},
   {path: 'home', component: HomeComponent},
   {path: 'taches', component: TachesComponent},
   {path: 'evenements', component : EvenementsComponent},
@@ -38,6 +43,9 @@ const routes: Routes = [
   {path: 'statistique', component: StatistiquesComponent},
   {path: 'stockage', component: StockageComponent},
   {path: 'vote', component: VoteComponent},
+  {path: 'user-profil', component: UserProfilComponent}
+
+
 ];
 
 @NgModule({

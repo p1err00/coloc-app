@@ -1,0 +1,31 @@
+<div class="card w-50 mr-4 text-center w-100" href="#">
+    <div class="card-header" (click)="redirectStock()" role="button">
+      <h3 class="card-title text-center">
+        <img src="assets/img/ic_assignment_black_24dp.png" alt=""> Stock
+      </h3>
+    </div>
+    <div class="card-body">
+      <div class="d-flex flex-column">
+        <h6 class="card-subtitle mb-2 text-muted text-center">5 derniers ajouts</h6>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Date achat</th>
+              <th scope="col">Date peremption</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stock of stocks">
+              <td>{{stock.nom_con}}</td>
+              <td>{{stock.date_achat_con | date:'yyyy-MM-dd'}}</td>
+              <td>{{stock.date_peremption_con | date:'yyyy-MM-dd'}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>

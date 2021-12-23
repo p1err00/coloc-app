@@ -1,0 +1,83 @@
+
+  
+  
+  
+  <div class="d-flex flex-column">
+    
+    <div class=" d-flex flex-row justify-content-between mr-4 w-100">
+      <div>
+        <h1 class="text-center border-bottom mb-4">Liste</h1>
+      </div>
+      
+      <div class="d-flex flex-column mr-4">
+        
+        <h2 class="bg-light">
+          <img src="assets/img/user_black.png" alt="">
+          De corvée :
+        </h2>
+  
+        <select name="" id="" class="form-control " (change)="selectChange($event)"
+          *ngIf="{'border-color': currentUserCourse == '' ? 'red' : 'red'}">
+          <option value="" disabled selected>- Selection -</option>
+          <option *ngFor="let user of users" value="{{ user.username_user }}">{{ user.username_user }}</option>
+        </select>
+  
+        <button type="button" class="btn btn-sm btn-default bg-secondary " (click)="changeUserCourse()">
+          <img src="/assets/img/ic_forward_black_24dp.png" alt="" />
+        </button>
+  
+      </div>
+    </div>
+  
+    <div class="d-flex flex-row justify-content-center">
+  
+      <div class="d-flex flex-row justify-content-between pr-4 mt-4">
+  
+        <div class="list-group-flush mr-4">
+  
+          <div class="d-flex flex-row justify-content-between">
+            <button type="button" class="btn btn-secondary mb-4" (click)="openModalAdd()">
+              <img src="assets/img/ic_add_circle_outline_white.png" alt=""> Ajouter
+            </button>
+            <button type="button" class="btn btn-danger mb-4" (click)="doneCourse()">
+              <img src="assets/img/ic_delete_forever_black_24dp.png" alt=""> Fait
+            </button>
+          </div>
+  
+  
+          <table class="table table-hover">
+            <thead class="thead table-secondary">
+              <tr #item>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">prix</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of currentCourses">
+                <th scope="row">1</th>
+                <td>{{item.nom_cur_cou}}</td>
+                <td>{{item.prix_cur_cou}}</td>
+                <td>
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-light"><img src="assets/img/modify_black.png" alt=""></button>
+                    <button type="button" class="btn btn-dark" (click)="deleteItemCoursesList(item)"><img
+                        src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+  
+        <div class="d-flex justify-content-between w-50">
+          
+  
+          
+        </div>
+      </div>
+  
+    </div>
+  </div>

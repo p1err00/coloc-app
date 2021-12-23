@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { RejoindreColocModalComponent } from '../modals/rejoindre-coloc-modal/rejoindre-coloc-modal.component';
+import { RejoindreColocModalComponent } from '../shared/modals/rejoindre-coloc-modal/rejoindre-coloc-modal.component';
 
 @Component({
   selector: 'app-select-coloc',

@@ -13,8 +13,8 @@ export class ExtrasService {
   constructor(private http: HttpClient) { }
 
     //Get all extras
-    getAll(): Observable<Extra[]> {
-      return this.http.get<Extra[]>(this.baseUrl+ "extras");
+    getAll(id : number): Observable<Extra[]> {
+      return this.http.get<Extra[]>(this.baseUrl+ "extras/"+id);
     }
   
     //Get extra by id

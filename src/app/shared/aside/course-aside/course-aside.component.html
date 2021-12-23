@@ -1,0 +1,99 @@
+
+    
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 (click)="showDernierAjout = !showDernierAjout">
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapseDernierAjout"
+            aria-expanded="true" aria-controls="collapseDernierAjout" >
+            
+            <img *ngIf="!showDernierAjout" src="assets/img/ic_arrow_drop_down_36pt.png" alt="" data-toggle="collapse"
+              data-target="#collapseDernierAjout" aria-expanded="true" aria-controls="collapseDernierAjout">
+
+            <img *ngIf="showDernierAjout" src="assets/img/ic_arrow_drop_up_black_18dp.png" alt=""
+              data-toggle="collapse" data-target="#collapseDernierAjout" aria-expanded="true"
+              aria-controls="collapseDernierAjout">
+              
+          </button>
+          Dernier ajout
+        </h4>
+      </div>
+
+      <div class="card-text">
+        <div class="collapse" id="collapseDernierAjout">
+          <span href="#" class="list-group-item list-group-item-action text-center" aria-current="true"
+            (click)="addToList(item)" *ngFor="let item of lastBuy">
+            {{ item.nom_cou }}
+            <!-- <span>{{ item.last_buy_cou }}</span> -->
+          </span>
+  
+        </div>
+      </div>
+      <div class="card-footer">
+
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 class="">
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsePlusAjoute"
+            aria-expanded="true" aria-controls="collapsePlusAjoute" (click)="showPlusAJoute = !showPlusAJoute">
+            <img *ngIf="!showPlusAJoute" src="assets/img/ic_arrow_drop_down_36pt.png" alt="" data-toggle="collapse"
+              data-target="#collapsePlusAjoute" aria-expanded="true" aria-controls="collapsePlusAjoute">
+            <img *ngIf="showPlusAJoute" src="assets/img/ic_arrow_drop_up_black_18dp.png" alt="" data-toggle="collapse"
+              data-target="#collapsePlusAjoute" aria-expanded="true" aria-controls="collapsePlusAjoute">
+          </button>
+          Plus ajoutés
+        </h4>
+      </div>
+
+      <div class="card-text">
+        <div class="collapse" id="collapsePlusAjoute">
+          <span href="#" class="list-group-item list-group-item-action d-flex justify-content-between border-top-0"
+            aria-current="true" (click)="addToList(item)" *ngFor="let item of moreBuy" #item>
+            {{item.nom_cou}}
+            <span>{{ item.nb_buy_cou }}</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 class="">
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapseHistorique"
+            aria-expanded="true" aria-controls="collapseHistorique" (click)="showHistorique = !showHistorique">
+            <img *ngIf="!showHistorique" src="assets/img/ic_arrow_drop_down_36pt.png" alt="" data-toggle="collapse"
+              data-target="#collapseHistorique" aria-expanded="true" aria-controls="collapseHistorique">
+            <img *ngIf="showHistorique" src="assets/img/ic_arrow_drop_up_black_18dp.png" alt="" data-toggle="collapse"
+              data-target="#collapseHistorique" aria-expanded="true" aria-controls="collapseHistorique">
+          </button>
+          Historique
+        </h4>
+      </div>
+
+      <div class="card-text">
+        <div class="collapse" id="collapseHistorique">
+          <div href="#" class="list-group-item list-group-item-action d-flex justify-content-around border-top-0"
+            (click)="addToList(item)" *ngFor="let item of courses">
+  
+            <div #item>
+  
+  
+              <span>{{item.nom_cou}}</span>
+              <span>{{ item.prix_cou }}</span>
+              <span>{{ item.nb_buy_cou }}</span>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+
+      </div>
+    </div>

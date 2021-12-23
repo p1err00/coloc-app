@@ -35,7 +35,7 @@ export class CoursesCurrentService {
         });
     }
   
-    update(id : string, data : any){
+    update(id : number, data : any){
       console.log(data);
       
       return this.http.put(`${this.baseUrl}coursesCourante/${id}`, data).subscribe(

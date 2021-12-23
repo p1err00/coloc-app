@@ -1,0 +1,30 @@
+
+<div class="d-flex flex-row justify-content-center">
+
+    <div class="d-flex flex-column">
+
+        <div class="d-flex flex-row justify-content-between border-bottom pb-2">
+
+            <button type="button" class="btn btn-outline-success" (click)="openModalAdd()">+</button>
+            <button type="button" class="btn btn-outline" (click)="reloadVote()">Reload</button>
+        </div>
+
+        <div class="d-flex flex-column justify-content-center text-center mb-2 border-bottom pb-2"  *ngFor="let vote of voteMap | keyvalue">
+            <span type="button" class="text-danger float-right" (click)="openModalDelete(vote.key)">X</span>
+            <span>
+                {{ vote.key.nom }}
+            </span>
+            <div class="d-flex flex-row">
+
+                <button type="button" class="btn btn-sm btn-outline-primary m-1" 
+                *ngFor="let choice of vote.value" 
+                (click)="voted(choice)"
+                [style.background]="hasVoted(choice)">
+                    {{ choice.nom }}
+                </button>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

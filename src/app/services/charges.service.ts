@@ -45,7 +45,6 @@ export class ChargesService {
   
     //Update charge by id
     update(id : string, data : any){
-      console.log(data);
       
       return this.http.put(`${this.baseUrl}charges/${id}`, data).subscribe(
         (val) => {
