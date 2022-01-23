@@ -1,0 +1,60 @@
+<div class="card">
+
+    <div class="card-header d-flex justify-content-start" *ngIf="currentFile.nom == ''">
+        <button type="button" class="btn">
+            <img src="/assets/img/ic_arrow_back_36pt.png" alt="" (click)="returnStockage()">
+        </button>
+        <h1>{{ currentFolder.nom }}</h1>
+    </div>
+
+    <div class="card-body">
+        <span class="d-flex row justify-content-start" *ngIf="currentFile.nom == ''">
+            <div class="card m-3 p-0 w-25" *ngFor="let file of filesServer">
+                <span class="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle">
+                    <button class="btn btn-outline">x</button>
+                </span>
+                <div class="card-header" (click)="openFile(file)">
+                    {{ file.nom }}
+                </div>
+                <div class="card-body" >
+                    <div *ngIf="file.extension == 'image/jpeg' || file.extension == 'image/png';">
+                        <img src="assets/img/ic_insert_photo_black_36dp.png" alt="">
+                    </div>
+                    <div *ngIf="file.extension == 'application/pdf' ">
+                        <img src="/assets/img/ic_insert_drive_file_black_36dp.png" alt="">
+
+                    </div>
+                    <div *ngIf="file.extension != 'image/jpeg' && file.extension != 'image/png' && file.extension != 'application/pdf' || file.extension == '' ">
+                        <img src="/assets/img/ic_folder_open_48pt_3x.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+        </span>
+
+        <span *ngIf="currentFile.nom != ''">
+            <app-file 
+            [currentFile]="currentFile"
+            [currentUser]="currentUser"
+            (event)="clearFile($event)"></app-file>
+        </span>
+    </div>
+
+    <div class="card-footer" *ngIf="currentFile.nom == ''">
+        <ngx-dropzone (change)="onSelect($event)" *ngIf="currentFile.nom == ''">
+
+            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+        
+            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        
+            </ngx-dropzone-preview>
+            
+        </ngx-dropzone>
+
+        <div class="d-flex flex-row justify-content-between">
+            <button type="button" class="btn btn-primary" (click)="addFiles()">Ajouter</button>
+        </div>
+    </div>
+</div>

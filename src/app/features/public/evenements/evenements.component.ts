@@ -36,7 +36,7 @@ export class EvenementsComponent implements OnInit {
     private authService: AuthService,
     private alertService : AlertService,
     private notifService : NotificationService,
-    private sharedEvenet : SharedEventService
+    private sharedEvent : SharedEventService
   ) { 
     let tokenInfo = this.getDecodedAccessToken(JSON.stringify(localStorage.getItem("access_token")));
 
@@ -46,7 +46,7 @@ export class EvenementsComponent implements OnInit {
       this.currentUser = res;
     });
 
-    sharedEvenet.changeEmitted$.subscribe( resp => {
+    sharedEvent.changeEmitted$.subscribe( resp => {
       this.evenements.push(resp);
     });
   }
@@ -125,6 +125,8 @@ export class EvenementsComponent implements OnInit {
 
   openModalDelete(item : Evenements){
     const modalDelete = this.modalService.open(ModalDeleteEvenementComponent, {
+      windowClass:'modalEvenement'
+
     });
 
     modalDelete.componentInstance.fromParent = item;

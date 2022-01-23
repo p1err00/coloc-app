@@ -15,6 +15,7 @@ import { AuthService } from '../../../services/auth.service';
 import { ColocationService } from '../../../services/colocation.service';
 import { AlertService } from '../../../services/alert.service';
 import { NotificationService } from '../../../services/notification.service';
+import { SharedCourseService } from 'src/app/services/sharedCourse/shared-course.service';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class CoursesComponent implements OnInit {
     private authService: AuthService,
     private serverColoc : ColocationService,
     private alertService : AlertService,
-    private notifService : NotificationService
+    private notifService : NotificationService,
+    private sharedCourse : SharedCourseService
   ) {
     let tokenInfo = this.getDecodedAccessToken(JSON.stringify(localStorage.getItem("access_token")));
 
@@ -47,7 +49,15 @@ export class CoursesComponent implements OnInit {
 
     this.authService.getUserProfile(id).subscribe(res => {
       this.currentUser = res;
-      console.log(this.currentUser);
+    });
+
+    sharedCourse.changeEmitted$.subscribe( resp => {
+      if(this.alreadyInCoursesList(resp.nom_cur_cou)){
+        this.alertService.showError('Erreur','Course deja dans la liste'); 
+      } else {
+        this.serverCurrent.create(resp);
+        this.currentCourses.push(resp);
+      }
     });
   }
 
@@ -66,8 +76,6 @@ export class CoursesComponent implements OnInit {
     })
   }
 
-  
-
   getUsers(){
     this.authService.getAll().subscribe( resp => {
       let coloc = this.currentUser.id_coloc;
@@ -75,66 +83,9 @@ export class CoursesComponent implements OnInit {
       for(let res of resp){
         if(res.id_coloc === coloc){
           this.users.push(res);
-
         }
       }
     });
-  }
-
-  //Add item from input to courses list
-  addItemToCourseList(item: any) {
-    
-    //Create object CurrentCourse
-    let currentCourse = {
-      id: 0,
-      nom_cur_cou: item.value,
-      nb_buy_cur_cou: 0,
-      last_buy_cur_cou: new Date(),
-      prix_cur_cou: 0,
-      id_coloc: this.currentUser.id_coloc,
-      done : false
-    }
-    //Create object Course
-    let course = {
-      id_cou: 0,
-      nom_cou: item.value,
-      nb_buy_cou: 0,
-      last_buy_cou: new Date(),
-      prix_cou: 0,
-      id_coloc: this.currentUser.id_coloc
-    }
-
-    this.serverCurrent.create(currentCourse);
-    this.currentCourses.push(currentCourse);
-
-    this.alertService.showSuccess('Succès', 'Course ajoutée à la liste');
-  }
-
-  //Add item from 'last_buy' and 'more_buy' to courses list
-  addToList(item: Course) {
-    let already: boolean;
-    already = this.alreadyInCoursesList(item.nom_cou);
-
-    let current = {
-      id: item.id_cou,
-      nom_cur_cou: item.nom_cou,
-      nb_buy_cur_cou: item.nb_buy_cou,
-      last_buy_cur_cou: item.last_buy_cou,
-      prix_cur_cou: item.prix_cou,
-      id_coloc: this.currentUser.id_coloc,
-      done : false
-    }
-
-    if (already == true) {
-
-      this.alertService.showWarning('Attention', 'Deja dans la liste de course')
-
-    } else {
-      item.nb_buy_cou++;
-      this.currentCourses.push(current);
-      this.serverCurrent.create(current);
-    this.alertService.showSuccess('Succès', 'Course ajoutée à la liste');
-    }
   }
 
   //Test to know if item is already in courses list

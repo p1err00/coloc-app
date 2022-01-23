@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-modal-create-group-chat',
@@ -8,13 +9,17 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalCreateGroupChatComponent implements OnInit {
 
-  @Output() fromParent = new EventEmitter<any>();
+  @Output() event = new EventEmitter<any>();
+  @Input() fromParent : any;
+  usersList : User[] = [];
 
   constructor(
     public activeModal : NgbActiveModal
   ) { }
 
   ngOnInit(): void {
+    console.log(this.fromParent);
+    this.usersList = this.fromParent;
   }
 
   closeModal() {
@@ -23,7 +28,7 @@ export class ModalCreateGroupChatComponent implements OnInit {
   
   saveModal(nom : string){
     
-    this.fromParent.emit({
+    this.event.emit({
 
     });
     

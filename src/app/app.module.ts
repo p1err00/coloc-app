@@ -69,7 +69,9 @@ import { StockageAsideComponent } from './shared/aside/stockage-aside/stockage-a
 import { StockAsideComponent } from './shared/aside/stock-aside/stock-aside.component';
 import { StatistiqueAsideComponent } from './shared/aside/statistique-aside/statistique-aside.component';
 import { WishlistAsideComponent } from './shared/aside/wishlist-aside/wishlist-aside.component';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FolderComponent } from './features/public/stockage/folder/folder/folder.component';
+import { FileComponent } from './features/public/stockage/file/file/file.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +131,9 @@ import { WishlistAsideComponent } from './shared/aside/wishlist-aside/wishlist-a
     StockageAsideComponent,
     StockAsideComponent,
     StatistiqueAsideComponent,
-    WishlistAsideComponent
+    WishlistAsideComponent,
+    FolderComponent,
+    FileComponent
   ],
   imports: [
     BrowserModule,
@@ -146,7 +150,8 @@ import { WishlistAsideComponent } from './shared/aside/wishlist-aside/wishlist-a
       positionClass: 'toast-top-right'
     }),
     ChartsModule,
-    SharedModule
+    SharedModule,
+    NgxDropzoneModule
   ],
   exports: [
     RouterModule

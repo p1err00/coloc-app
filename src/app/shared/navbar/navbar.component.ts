@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.currentUser){
-
       this.getNotif();
     }
   }
@@ -40,7 +39,7 @@ export class NavbarComponent implements OnInit {
       this.notifService.getAll().subscribe( resp => {
         this.notifs = resp;
         for(let res of resp){
-          if(res.id_user_receive == this.currentUser.id_user && res.is_read != true){           
+          if(res.id_user_receive == this.currentUser.id_user && !res.is_read){       
             this.nbNotif++;
           }
         }
@@ -49,14 +48,5 @@ export class NavbarComponent implements OnInit {
 
   setNbNotifs(nbNotifs : any){
     this.nbNotif = nbNotifs;
-  }
-
-  countNotifs(){
-    setTimeout(() => {
-      for(let notif of this.notifs){
-        this.nbNotif+=1; 
-      }
-    },400);
-    
   }
 }

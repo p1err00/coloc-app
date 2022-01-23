@@ -6,7 +6,7 @@
       <h1 class="border-bottom">WishList</h1>
     </div>
 
-    <button class="btn btn-secondary">Ajouter</button>
+    <button class="btn btn-secondary" (click)="openModalAdd()">Ajouter</button>
 
   </div>
 
@@ -27,13 +27,18 @@
         <th scope="row">1</th>
         <td>{{item.nom_w}}</td>
         <td>{{item.prix_w}}</td>
-        <td><a href="{{item.url_w}}">{{item.url_w}}</a></td>
+        <td><a href="{{item.url_w}}" target="_blank">{{item.url_w}}</a></td>
         <td>{{item.desc_w}}</td>
         <td>
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-light"><img src="assets/img/modify_black.png" alt=""></button>
-            <button type="button" class="btn btn-dark"><img src="assets/img/ic_delete_forever_white_24dp.png"
-                alt=""></button>
+            <button type="button" class="btn btn-light"
+            (click)="openModalModif(item)">
+              <img src="assets/img/modify_black.png" alt="">
+            </button>
+            <button type="button" class="btn btn-dark"
+            (click)="openDeleteModal(item)">
+              <img src="assets/img/ic_delete_forever_white_24dp.png" alt="">
+            </button>
           </div>
         </td>
       </tr>

@@ -7,7 +7,7 @@
     <input type="text" class="form-control w-50"
     formControlName="nom_t"
     [ngStyle]="{'border-color':nom_t?.hasError('required') && signupForm.controls.nom_t!.touched 
-                                    || ( nom_t?.hasError('pattern')) ? 'red' : ''}" #name>
+                                    || ( nom_t?.hasError('pattern')) ? 'red' : ''}" >
   </div>
 
   <div class="mb-2 d-flex justify-content-between form-group">
@@ -15,7 +15,7 @@
     <input type="date" name="prix" class="form-control w-50"
     formControlName="date_exec_t"
     [ngStyle]="{'border-color':date_exec_t?.hasError('required') && signupForm.controls.date_exec_t!.touched 
-                                    || (signupForm.controls.date_exec_t!.touched && date_exec_t?.hasError('pattern')) ? 'red' : ''}" #date_exec>
+                                    || (signupForm.controls.date_exec_t!.touched && date_exec_t?.hasError('pattern')) ? 'red' : ''}" >
   </div>
 
   <div class="mb-2 d-flex justify-content-between">
@@ -23,7 +23,7 @@
     <input type="date" name="prix" class="form-control w-50"
     formControlName="date_fin_t"
     [ngStyle]="{'border-color':date_fin_t?.hasError('required') && signupForm.controls.date_fin_t!.touched 
-                                    || (date_fin_t?.hasError('pattern')) ? 'red' : ''}" #date_fin>
+                                    || (date_fin_t?.hasError('pattern')) ? 'red' : ''}" >
   </div>
 
   <div class="mb-2 d-flex justify-content-between form-group">
@@ -31,7 +31,7 @@
     <textarea type="text" name="prix" class="form-control w-50"
     formControlName="desc_t"
     [ngStyle]="{'border-color':desc_t?.hasError('required') && signupForm.controls.desc_t!.touched 
-                                    || (desc_t?.hasError('pattern')) ? 'red' : ''}" #desc></textarea>
+                                    || (desc_t?.hasError('pattern')) ? 'red' : ''}" ></textarea>
   </div>
 
   <div class="mb-2 d-flex justify-content-between">
@@ -45,7 +45,7 @@
 
   <div class="d-flex justify-content-center card-footer">
     <button type="submit" class="btn btn-primary "
-      (click)="saveModal(name.value, date_exec.value, date_fin.value, desc.value)">Ajouter</button>
+      (click)="saveModal()">Ajouter</button>
   </div>
   
 </form>

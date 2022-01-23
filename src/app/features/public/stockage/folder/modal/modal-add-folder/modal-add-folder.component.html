@@ -1,0 +1,26 @@
+<form class="form-group m-4">
+    <div class="mb-2 d-flex flex-column justify-content-between">
+        <div>
+            <label for="name" class="form-label mr-3">Nom</label>
+            <input type="text" class="form-group" #nom>
+        </div>
+
+        <div>
+            <input class="form-check-input" type="checkbox" value="" #checkPublic (change)="changePublicState()">
+            <label class="form-check-label" for="checkPublic">
+                Partager à tout le monde.
+            </label>
+        </div>
+
+        <div>
+            <input class="form-check-input" type="checkbox" value="" #checkPartage (change)="changePartageState()">
+            <label class="form-check-label" for="checkPartage">
+                Partage restreint
+            </label>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary " (click)="saveModal(nom.value)">Ajouter</button>
+    </div>
+</form>

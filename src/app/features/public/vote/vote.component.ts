@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddVoteComponent } from '../../../shared/modals/modal-add-vote/modal-add-vote.component';
 import Vote from '../../../models/vote';
@@ -22,8 +22,8 @@ import { ModalDeleteVoteComponent } from '../../../shared/modals/modal-delete-vo
 export class VoteComponent implements OnInit {
 
   @Input() fromParent : any;
-  
   @Input() currentUser !: User;
+  @Output() event = new EventEmitter();
 
   voteList : Vote[] = [];
   voteFinished : Vote[] = [];
@@ -59,7 +59,18 @@ export class VoteComponent implements OnInit {
 
   getVote(){
       this.voteService.getAll(this.currentUser.id_coloc).toPromise().then( (resp) => {
-        this.voteList = resp
+        let currentDate = new Date();
+        for(let res of resp){
+          res.timer = new Date(res.timer);
+          
+          if(res.timer < currentDate){
+            this.voteFinished.push(res);
+          } else {
+            
+            this.voteList.push(res);
+          }
+        }
+        this.event.emit(this.voteFinished);        
       });
         this.fillVote();
   }
@@ -76,10 +87,17 @@ export class VoteComponent implements OnInit {
 
   fillVote(){
     setTimeout(() => {
+      
       for(let vote of this.voteList){
         this.choiceService.getAll(vote.id_vote).subscribe( (resp) => {
           this.voteMap.set(vote, resp);              
         });
+
+        for(let vote of this.voteFinished){
+          this.choiceService.getAll(vote.id_vote).subscribe( resp => {
+            // TODO fillVote and set most up value
+          });
+        }
       }
     }, 300);
   }

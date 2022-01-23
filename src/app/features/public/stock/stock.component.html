@@ -33,45 +33,38 @@
             </li>
         </ul>
     </div>
-    <div class="d-flex flex-row">
+    <div class="d-flex row justify-content-start">
 
-        <div class="w-100 main">
-            <!-- [ngClass]="{'list-group-item-danger' : product.quantite_con == 0}" -->
-            <div *ngFor="let product of stocks; index as i"
-                class="p-4 card d-flex flex-row w-100 justify-content-around mb-3 text-wrap"
-                [ngClass]="{'list-group-item-danger' : product.quantite_con == 0}">
+        <div *ngFor="let product of stocks; index as i"
+            class="p-4 card m-3 w-25"
+            [ngClass]="{'list-group-item-danger' : product.quantite_con == 0}">
 
-                <span #id>
-                    <h5>{{ i }}</h5>
-                </span>
-                <span #name>
-                    <h5>{{ product.nom_con }}</h5>
-                </span>
-                <span #quantite>
-                    <h5>x{{ product.quantite_con }}</h5>
-                </span>
-                <span #importance>
-                    <h5>{{ product.importance }}</h5>
-                </span>
-                <span #categorie>
-                    <h5>{{ product.categorie }}</h5>
-                </span>
-                <span #date_achat>
-                    <h6>{{ product.date_achat_con | date:'yyyy-MM-dd' }}</h6>
-                </span>
-                <span #date_peremption>
-                    <h6>{{ product.date_peremption_con | date:'yyyy-MM-dd' }}</h6>
-                </span>
-                <span>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-light" (click)="openModalModif(product)"><img
-                                src="assets/img/modify_black.png" alt=""></button>
-                        <button type="button" class="btn btn-dark" (click)="openModalDelete(product)"><img
-                                src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
-                    </div>
-                </span>
+            <span class="d-flex flex-row justify-content-around">
+                <h6>{{ i }}</h6>
+                <h5>{{ product.nom_con }}</h5>
+            </span>
+            <span #quantite>
+                <h3>x{{ product.quantite_con }}</h3>
+            </span>
+            <span #importance>
+                <h5>{{ product.categorie }}</h5>
+                <h5>{{ product.importance }}</h5>
+            </span>
+            <span #date_achat>
+                <h6>{{ product.date_achat_con | date:'yyyy-MM-dd' }}</h6>
+            </span>
+            <span #date_peremption>
+                <h6>{{ product.date_peremption_con | date:'yyyy-MM-dd' }}</h6>
+            </span>
+            <span>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-light" (click)="openModalModif(product)"><img
+                            src="assets/img/modify_black.png" alt=""></button>
+                    <button type="button" class="btn btn-dark" (click)="openModalDelete(product)"><img
+                            src="assets/img/ic_delete_forever_white_24dp.png" alt=""></button>
+                </div>
+            </span>
 
-            </div>
         </div>
 
     </div>

@@ -87,14 +87,14 @@ export class ModalAddVoteComponent implements OnInit {
   }
 
   convertTimer(){
-    
+    // TODO    
   }
 
   closeModal() {
     this.activeModal.close();
   }
   
-  saveModal(nom : string){
+  saveModal(){
     console.log(this.optionSelected);
     
     if(this.choiceList.length == 0){
@@ -116,16 +116,13 @@ export class ModalAddVoteComponent implements OnInit {
         
         this.event.emit({
           id : 0,
-          nom : nom,
+          nom : this.signupForm.get('nom')?.value,
           choix : this.choiceList,
           anonyme : this.myCheckbox,
           timer : this.optionSelected
         });
-
-        
       }
-    this.activeModal.close();
-      
+      this.activeModal.close();
     }
 
   }

@@ -11,6 +11,8 @@ import { Extra } from '../../../models/extras';
 import { Taches } from '../../../models/taches';
 import { Evenements } from '../../../models/evenements';
 import * as PropTypes from 'prop-types'
+import { TachesService } from 'src/app/services/taches.service';
+import { EvenementsService } from 'src/app/services/evenements.service';
 
 
 @Component({
@@ -26,6 +28,13 @@ export class StatistiquesComponent implements OnInit {
   extrasList: Extra[] = [];
   tachesList: Taches[] = [];
   evenetsList: Evenements[] = []
+  usersListString : string[] = [];
+
+  number : number[] = [];
+
+
+  charges: number = 0;
+
 
   // Pie
   public chargesCharttOptions: ChartOptions = {
@@ -39,34 +48,75 @@ export class StatistiquesComponent implements OnInit {
   public chargesCharttColors = [
     {
       backgroundColor: [
-        'rgba(92, 184, 92,1)',
-        'rgba(255, 195, 0, 1)',
-        'rgba(217, 83, 79,1)',
-        'rgba(129, 78, 40, 1)',
-        'rgba(129, 199, 111, 1)'
-      ]
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
     }
   ];
 
 
   barChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+          ticks: {
+              beginAtZero: true
+          }
+      }]
+  }
   };
-  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+  barChartLabels: Label[] = [];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
 
-  barChartData: ChartDataSets[] = [
-    { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
+  public barChartData = [
+    {data: this.number, label: ''},
+
+  ];
+  barChartColor = [
+      {
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }
   ];
 
 
-  lineChartData: ChartDataSets[] = [
-    { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
-  ];
+  lineChartData: ChartDataSets[] = [];
 
-  lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June'];
+  lineChartLabels: Label[] = ["1", "2", "3", "4", "5", "6", "7", '8', '9', '10', '11', '12'];
 
   lineChartOptions = {
     responsive: true,
@@ -74,7 +124,27 @@ export class StatistiquesComponent implements OnInit {
 
   lineChartColors: Color[] = [
     {
-      borderColor: 'black'
+      
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+      
     },
   ];
 
@@ -87,7 +157,9 @@ export class StatistiquesComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private serverCharge: ChargesService,
-    private serverExtra: ExtrasService
+    private serverExtra: ExtrasService,
+    private serverTaches : TachesService,
+    private serverEvent : EvenementsService
   ) {
     let tokenInfo = this.getDecodedAccessToken(JSON.stringify(localStorage.getItem("access_token")));
 
@@ -104,38 +176,63 @@ export class StatistiquesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    this.getCharges();
+    this.getEvents();
   }
 
   getUsers() {
-    let charges: number = 0;
     this.authService.getAll().subscribe(resp => {
       for (let user of resp) {
         this.chargesCharttLabels.push(user.username_user);
-        this.serverCharge.getById(user.id_user).subscribe(resp => {
-          for (let charge of resp) {
-            charges += charge.valeur_cha;
-          }
-          this.chargesCharttData.push(charges);
-
-        });
-      }
-      console.log(this.chargesCharttData);
-
+        this.barChartLabels.push(user.username_user);
+        this.getCharges(user);
+        this.getTaches(user);
+        // this.barChartData.push({data : this.number, label : user.username_user});
+      }      
     });
   }
 
-  getCharges() {
+  getCharges(user : User) {
     setTimeout(() => {
-      console.log(this.usersList);
-
+      this.serverCharge.getById(user.id_user).subscribe(resp => {
+        for (let charge of resp) {
+          this.charges += charge.valeur_cha;
+        }
+        this.chargesCharttData.push(this.charges);
+      });
     }, 200);
   }
 
 
+  // TODO Refaire
+  getTaches(user : User){
+    this.serverTaches.getByUser(user.username_user).subscribe( resp => {
+      this.number.push(resp.length);
+      
+    });    
+  }
 
+  getEvents(){
+    let numberList : number[] = [];
+    let aze : number = 0;
+    this.serverEvent.getAll().subscribe( resp => {
+     
+      resp = resp.sort((a, b) => a.date_exec_e.toString().localeCompare(b.date_exec_e.toString()));
 
-
+      for(let i = 0; i < 12; i++){
+        console.log('ca rentre I');
+        for(let res of resp){
+            console.log('ca rentre RES');
+          
+          if(new Date(res.date_exec_e).getMonth() == i){            
+            aze++;
+          }
+        }
+        numberList.push(aze);
+        aze = 0;
+      }      
+    });
+    this.lineChartData.push({data : numberList, label : 'event'});
+  }
 
 
   getDecodedAccessToken(token: string): any {

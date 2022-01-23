@@ -9,14 +9,18 @@ import { Evenements } from '../models/evenements';
 })
 export class EvenementsService {
 
+  baseUrl : string = "http://localhost:3000/";
+
   constructor(
     private http : HttpClient
   ) { }
 
-  baseUrl : string = "http://localhost:3000/";
-
   getAll(): Observable<Evenements[]>{
     return this.http.get<Evenements[]>(this.baseUrl+"evenements");
+  }
+
+  getById(id : number){
+    return this.http.get<Evenements[]>(`${this.baseUrl}evenement/${id}`)
   }
 
   create(data : Evenements){

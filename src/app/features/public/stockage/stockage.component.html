@@ -1,13 +1,28 @@
-<div class="container m-2">
-    <div class="row">
-        <div class="col">
-            azeaze
+<div class=" m-2">
+    <div class="d-flex row justify-content-start" *ngIf="currentFolder.nom == ''">
+        <div class="card w-25 m-2 border border-4 border-success" *ngFor="let folder of stockage_folder">
+            <h2 class="text-center">
+                {{ folder.nom }}
+            </h2>
+            <button class="btn text-white text-wrap folder" (click)="openFolder(folder)">
+
+                <span class="position-absolute top-0 start-100 translate-middle bg-secondary border border-light rounded-circle">
+                    <button class="btn btn-outline" (click)="deleteFolder(folder, $event)">x</button>
+                </span>
+                <img src="/assets/img/ic_folder_48pt_3x.png" alt="" class="img" />
+                
+            </button>
+            
         </div>
-        <div class="col">
-            azeaze
-        </div>
-        <div class="col">
-            azeaze
-        </div>
+        <button type="button" class="btn folder-add w-25" (click)="createFolder()">
+            <img src="/assets/img/ic_create_new_folder_black_48dp.png" alt="">
+        </button>
+    </div>
+
+    <div *ngIf="currentFolder.nom != ''">
+        <app-folder 
+        [currentFolder]="currentFolder"
+        [currentUser]="currentUser"
+        (event)="openFolder($event)"></app-folder>
     </div>
 </div>

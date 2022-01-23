@@ -24,7 +24,6 @@ export class TachesService {
   }
 
   create(data : any) {
-    console.log(data);      
     return this.http.post(this.baseUrl+"taches", data).subscribe(
       (val) => {
           console.log("POST call successful value returned in body", 

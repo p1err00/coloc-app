@@ -2,10 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Taches } from 'src/app/models/taches';
 import { User } from 'src/app/models/user';
 import { AlertService } from 'src/app/services/alert.service';
-import { AuthService } from 'src/app/services/auth.service';
  
 @Component({
   selector: 'app-modal-add-taches',
@@ -26,7 +24,6 @@ export class ModalAddTachesComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public activeModal : NgbActiveModal,
-    private authService: AuthService,
     private alertService : AlertService
   ) {
     this.signupForm = this.fb.group({
@@ -39,7 +36,6 @@ export class ModalAddTachesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.fromParent);
     this.fillOptions();
   }
 
@@ -55,15 +51,16 @@ export class ModalAddTachesComponent implements OnInit {
       this.options.push(from.username_user);
     }
   }
-  saveModal(name: string, date_exec : string, date_fin : string, desc : string){
+  
+  saveModal(){
     
     if (this.signupForm.valid) {
       this.event.emit({
         id: 0,
-        nom_t : name,
-        date_exec_t : date_exec,
-        date_fin_t : date_fin,
-        desc_t : desc,
+        nom_t : this.signupForm.get('nom_t'),
+        date_exec_t : this.signupForm.get('date_exec_t'),
+        date_fin_t : this.signupForm.get('date_fin_t'),
+        desc_t : this.signupForm.get('desc_t'),
         personne_t : this.currentUserTache
       });
 

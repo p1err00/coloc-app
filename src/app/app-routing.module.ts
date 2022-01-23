@@ -17,6 +17,7 @@ import { StockageComponent } from './features/public/stockage/stockage.component
 import { VoteComponent } from './features/public/vote/vote.component';
 import { UserProfilComponent } from './features/public/user-profil/user-profil.component';
 import { StockComponent } from './features/public/stock/stock.component';
+import { BudgetComponent } from './features/public/budget/budget.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
   {path: 'statistique', component: StatistiquesComponent},
   {path: 'stockage', component: StockageComponent},
   {path: 'vote', component: VoteComponent},
-  {path: 'user-profil', component: UserProfilComponent}
+  {path: 'user-profil', component: UserProfilComponent},
+  {path: 'budget', component: BudgetComponent}
 
 
 ];

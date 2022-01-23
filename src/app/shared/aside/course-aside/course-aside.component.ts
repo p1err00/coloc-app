@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Course } from 'src/app/models/course';
+import { CourseCourante } from 'src/app/models/courseCourante';
 import { ServerService } from 'src/app/services/serverCourse.service';
+import { SharedCourseService } from 'src/app/services/sharedCourse/shared-course.service';
 
 @Component({
   selector: 'app-course-aside',
@@ -21,7 +23,7 @@ export class CourseAsideComponent implements OnInit {
 
   constructor(
     private server: ServerService,
-
+    private sharedCourse : SharedCourseService
   ) { }
 
   ngOnInit(): void {
@@ -70,6 +72,15 @@ export class CourseAsideComponent implements OnInit {
   }
 
   addToList(item : Course){
-
+    let course : CourseCourante= {
+      id : 0,
+      nom_cur_cou : item.nom_cou,
+      nb_buy_cur_cou : item.nb_buy_cou,
+      last_buy_cur_cou : item.last_buy_cou,
+      prix_cur_cou : item.prix_cou,
+      done : false,
+      id_coloc : item.id_coloc
+    }
+    this.sharedCourse.emitChange(course);
   }
 }

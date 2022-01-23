@@ -16,7 +16,6 @@ export class ModalDeleteVoteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.fromParent);
     
   }
 

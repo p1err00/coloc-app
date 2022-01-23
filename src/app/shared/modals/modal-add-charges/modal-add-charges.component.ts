@@ -18,9 +18,10 @@ export class ModalAddChargesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  closeModal(sendData : any) {
-    this.activeModal.close(sendData);
+  closeModal() {
+    this.activeModal.close();
   }
+  
   saveModal(nom : string, valeur : string){
     
     this.event.emit({

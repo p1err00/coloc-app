@@ -1,0 +1,83 @@
+<div class="card d-flex">
+
+    <div class="card-header d-flex flex-row justify-content-between">
+        <h3>{{ currentFile.nom }}</h3>
+        <button type="button" class="btn btn-outline border-circle" (click)="close()">X</button>
+    </div>
+
+    <div class="card-body d-flex flex-row justify-content-around">
+        <div class="">
+            <img src="/assets/img/ic_folder_open_48pt_3x.png" alt="">
+        </div>
+
+        <div class="border-left"></div>
+        <div class="d-flex flex-column">
+            <h2>Informations</h2>
+            <span class="text-success ml-3">
+                Extension: {{ currentFile.extension }}
+            </span>
+
+            <span class="text-success ml-3">
+                Chemin: {{ currentFile.path }}
+            </span>
+
+            <span class="text-success ml-3">
+                Vue de tous: {{ currentFile.public }}
+            </span>
+
+            <span class="text-success ml-3">
+                Partagé: {{ currentFile.is_shared }}
+            </span>
+
+            <div class="border mt-4"></div>
+            <div class="d-flex flex-row mt-4">
+
+                <div class="mt-2 mr-2">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                            (change)="changePublic()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Partager à tous
+                        </label>
+                    </div>
+
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                            (change)="createShared()" [checked]="selectUsersToShared">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Partage restreint
+                        </label>
+                    </div>
+                </div>
+
+                <div class="w-100">
+                    <p>
+                        Qui voit ce dossier :
+                    </p>
+                    <ul class="list-group"
+                        *ngIf="selectUsersToShared == true || this.currentFile.is_shared == true">
+                        <li class="list-group-item" *ngFor="let user of usersShared">
+                            {{ user.username_user }}
+                            <button type="button" class="btn btn-outline border-circle"
+                                (click)="deleteUserToShare()">X</button>
+
+                        </li>
+                    </ul>
+                    <h3 class=" border-top border-3">Ajouter</h3>
+                    <ul class="list-group" *ngIf="selectUsersToShared == true || this.currentFile.is_shared == true">
+                        <li class="list-group-item" *ngFor="let user of users">
+                            {{ user.username_user }}
+                            <button type="button" class="btn btn-outline border-circle"
+                                (click)="addUserToShare(user)">+</button>
+
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-primary">Ajouter</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

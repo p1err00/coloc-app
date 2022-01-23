@@ -18,18 +18,17 @@
                             <button type="button" class="btn btn-sm btn-primary" (click)="leave()">
                                 <img src="assets/img/ic_arrow_back_36pt.png" alt="">
                             </button>
-                            <p class="username">
+                            <h1 class="username">
                                 {{ currentChannel.nom }}
-                            </p>
+                            </h1>
                         </div>
                     
                         <div class="chat-body">
-                            <!-- [ngClass]="message?.user === currentUser?.username_user && 'name-user'" -->
                             <div *ngFor="let message of messageArray">
-                                    <p class="message-container w-100 float-left" *ngIf="message.id_user_send != currentUser.id_user">
+                                    <p class="message-container w-100 float-left text-wrap" [ngStyle]="{ 'background' : '#ffcccc'}" *ngIf="message.id_user_send != currentUser.id_user">
                                         {{ message?.message }}
                                     </p>
-                                    <p class="message-container w-100 float-right" *ngIf="message.id_user_send == currentUser.id_user">
+                                    <p class="message-container w-100 float-right text-wrap" [ngStyle]="{ 'background' : '#ccf8ff'}" *ngIf="message.id_user_send == currentUser.id_user">
                                         {{ message?.message }}
                                     </p>
                             </div>

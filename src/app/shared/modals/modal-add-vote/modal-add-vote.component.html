@@ -20,11 +20,11 @@
     </div>
     <select class="form-select" aria-label="Default select example">
         <option selected>Open this select menu</option>
-        <option value="{{options.valeur}}" *ngFor="let options of otpionsTimer" (click)="setSelect(options.valeur)">{{ options }}</option>
+        <option value="{{options.valeur}}" *ngFor="let options of otpionsTimer" (click)="setSelect(options.valeur)">{{ options.valeur }}</option>
       </select>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="changeAnonyme()">
         <label class="form-check-label" for="exampleCheck1" #anonyme>Anonyme</label>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="saveModal(choice.value)">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="saveModal()">Submit</button>
 </form>

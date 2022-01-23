@@ -1,7 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalSeeTacheComponent } from 'src/app/features/public/home/modal/modal-see-tache/modal-see-tache.component';
 import { Taches } from 'src/app/models/taches';
 import { User } from 'src/app/models/user';
+import Vote from 'src/app/models/vote';
 import { TachesService } from 'src/app/services/taches.service';
 
 @Component({
@@ -15,15 +18,16 @@ export class HomeAsideComponent implements OnInit {
 
   tachesUser : Taches[] = [];
   tacheColor : string = '';
-
+  listVoted : Vote[] = [];
 
   constructor(
     private serverTaches : TachesService,
+    private modalService : NgbModal,
+
   ) { }
 
   ngOnInit(): void {
     this.getTacheUser();
-    
   }
 
   getTacheUser(){
@@ -54,5 +58,18 @@ export class HomeAsideComponent implements OnInit {
     }
     
     return this.tacheColor;
+  }
+
+  getVoted(voted : Vote[]){
+    this.listVoted = voted;
+  }
+
+  openModalSee(tache : Taches){
+    const modalRef = this.modalService.open(ModalSeeTacheComponent,{
+      windowClass : 'modalStock'
+    });
+
+    modalRef.componentInstance.fromParent = tache;
+
   }
 }

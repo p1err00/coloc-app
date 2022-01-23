@@ -1,20 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalStockComponent } from '../../../shared/modals/modal-stock/modal-stock.component';
 import { ModalStockDeleteComponent } from '../../../shared/modals/modal-stock-delete/modal-stock-delete.component';
 import { ModalAddStockComponent } from '../../../shared/modals/modal-add-stock/modal-add-stock.component';
 import { Stock } from '../../../models/stock';
 import { Observable } from 'rxjs';
 import { ServerStockService } from '../../../services/server-stock.service';
-import { ImportanceService } from '../../../services/importance.service';
-import { CategorieService } from '../../../services/categorie.service';
-import { Importance } from '../../../models/importance';
-import { Categorie } from '../../../models/categorie';
-import { ModalCategorieAddComponent} from '../../../shared/modals/modal-categorie-add/modal-categorie-add.component'
-import { ModalCategorieModifComponent} from '../../../shared/modals/modal-categorie-modif/modal-categorie-modif.component'
-import { ModalImportanceAddComponent} from '../../../shared/modals/modal-importance-add/modal-importance-add.component'
 import { User } from '../../../models/user';
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe } from '@angular/core';
 
 import { AuthService } from '../../../services/auth.service';
 import jwt_decode from 'jwt-decode';

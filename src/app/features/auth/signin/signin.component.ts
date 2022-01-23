@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { AlertService } from '../../../services/alert.service';
 import { AuthService } from '../../../services/auth.service';
 
@@ -18,20 +19,24 @@ export class SigninComponent implements OnInit {
   backgroundName = true;
   backgroundPassword = true;
 
+  username : string = '';
+  password : string = '';
+
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
     public router: Router,
     public alertService : AlertService
   ) {
+    this.setLog();
     this.signinForm = this.fb.group({
-      username_user: [''],
-      password_user: ['']
+      username_user: [this.username],
+      password_user: [this.password]
     })
   }
 
   ngOnInit() { 
-    //this.isLogged();
+    this.isLogged();
   }
 
   // Getter form
@@ -39,12 +44,22 @@ export class SigninComponent implements OnInit {
   get password_user(){return this.signinForm.get('password_user');}
 
   // ! Eviter la deconnexion au rechargement + connexion automatique
-  isLogged(){
+  setLog(){
     let token = this.authService.getDecodedAccessToken();
-    console.log(token);
+    if(token != null){
+
+      this.username = token.name;
+      this.password = token.password;
+    }
+
+  }
+  isLogged(){
+    if (this.signinForm.value != '') {
+      
+      
+      this.authService.signIn(this.signinForm.value).closed == false;
+    }
     
-    this.authService.getUserProfile(token);
-    this.authService.signIn(token);
   }
 
   loginUser() {

@@ -1,0 +1,48 @@
+<div class="d-flex flex-column card">
+
+    <div class="card-header">
+        <h1>Ajouter</h1>
+    </div>
+
+        <form [formGroup]="signupForm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nom</label>
+                    <input type="text" class="form-control" 
+                    formControlName="nom_w"
+                    [ngStyle]="{'border-color':nom_w?.hasError('required') && signupForm.controls.nom_w!.touched 
+                                    || ( nom_w?.hasError('pattern')) ? 'red' : ''}"
+                    id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Prix</label>
+                    <input type="number" class="form-control" 
+                    formControlName="prix_w"
+                    [ngStyle]="{'border-color':prix_w?.hasError('required') && signupForm.controls.prix_w!.touched 
+                                    || (signupForm.controls.prix_w!.touched && prix_w?.hasError('pattern')) ? 'red' : ''}"
+                    id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">url</label>
+                    <input type="text" class="form-control" 
+                    formControlName="url_w"
+                    [ngStyle]="{'border-color':url_w?.hasError('required') && signupForm.controls.url_w!.touched 
+                                    || (signupForm.controls.url_w!.touched && url_w?.hasError('pattern')) ? 'red' : ''}"
+                    id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Desc</label>
+                    <input type="text" class="form-control" 
+                    formControlName="desc_w"
+                    [ngStyle]="{'border-color':desc_w?.hasError('required') && signupForm.controls.desc_w!.touched 
+                                    || (signupForm.controls.desc_w!.touched && desc_w?.hasError('pattern')) ? 'red' : ''}"
+                    id="exampleFormControlInput1">
+                </div>
+            </div>
+        </form>
+
+
+    <div class="d-flex flex-row justify-content-end card-footer">
+        <button type="submit" class="btn btn-outline" (click)="saveModal()">Ajouter</button>
+    </div>
+</div>

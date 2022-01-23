@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Channel } from 'src/app/models/channel';
 import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/models/user';
@@ -18,6 +18,8 @@ export class ChannelsComponent implements OnInit {
 
   currentUser !: User;
   displayUser: boolean = false;
+  @Input() fromParent : any;
+  
 
   @Output() selectChannel = new EventEmitter<any>();
 
@@ -125,6 +127,8 @@ export class ChannelsComponent implements OnInit {
         windowClass : 'modalAddStock'
       });
   
+      modalAdd.componentInstance.fromParent = this.usersList;
+
       modalAdd.componentInstance.event.subscribe((item : any) => {
   
         // let group = {
