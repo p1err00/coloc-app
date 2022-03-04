@@ -1,18 +1,75 @@
-<div class="w-75 mx-auto card p-4">
+<div class="mx-auto card p-4 d-flex flex-column">
     <div class="d-flex flex-row justify-content-between">
         <h2>Abonnements</h2>
         <button type="button" class="btn btn-sm btn-primary">Ajouter</button>
     </div>
-    <div class="card m-2">
-        <div class="card-header">
-            Nom : 
+
+    <div class="d-flex flex-row">
+        <div class="d-flex flex-column w-50 border-right">
+            <h2>A payer</h2>
+            <div class="card d-flex flex-column m-4" *ngFor="let abonnement of abonnements_not_payed">
+                <div class="card-header">
+                    <h2>
+                        {{ abonnement.site_name }}
+                        <h4>
+                        {{ abonnement.amount }}
+                        </h4>
+                    </h2>
+                </div>
+                <div class="card-body d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-column justify-content-around">
+                        <span>
+                            {{ abonnement.link }}
+                        </span>
+                        <span>
+                            {{ abonnement.date_creation | date:'dd/MM/YYYY' }}
+                        </span>
+                    </div>
+
+                    <div>
+                        {{ abonnement.date_facturation | date:'dd/MM/YYYY' }}
+                    </div>
+                </div>
+                <div class="card-footer d-flex">
+                    <button type="button" class="btn btn-success">Infos</button>
+                    <button type="button" class="btn btn-danger">Demander Resiliation</button>
+                </div>
+            </div>
+
         </div>
-        <div class="card-body">
-            Montant : 
-        </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-success">Infos</button>
-            <button type="button" class="btn btn-danger">Resilier</button>
+
+        <div class="d-flex flex-column w-50 ml-2">
+            <h2>Payé</h2>
+            <div class="card d-flex flex-column m-4" *ngFor="let abonnement of abonnements_payed">
+                <div class="card-header">
+                    <h2>
+                        {{ abonnement.site_name }}
+                        <h4>
+                        {{ abonnement.amount }}
+                        </h4>
+                    </h2>
+                </div>
+                <div class="card-body d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-column justify-content-around">
+                        <span>
+                            {{ abonnement.link }}
+                        </span>
+                        <span>
+                            {{ abonnement.date_creation | date:'dd/MM/YYYY' }}
+                        </span>
+                    </div>
+
+                    <div>
+                        {{ abonnement.date_facturation | date:'dd/MM/YYYY' }}
+                    </div>
+                </div>
+                <div class="card-footer d-flex">
+                    <button type="button" class="btn btn-success">Infos</button>
+                    <button type="button" class="btn btn-danger">Demander Resiliation</button>
+                </div>
+            </div>
         </div>
     </div>
+    
+        
 </div>

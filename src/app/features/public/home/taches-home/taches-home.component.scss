@@ -2,3 +2,29 @@
     max-height: 420px;
     overflow-y: auto;
 }
+#slider .carousel-item {
+    height: 200px;
+  }
+  
+  .carousel-caption {
+    font-size: 18px;
+  }
+  
+  .carousel-item>img {
+    width: 100%
+  }
+  .scroll{
+    max-height: 420px;
+    overflow-y: auto;
+}
+#sliderNotDefined .carousel-item {
+    height: 200px;
+  }
+  
+  .carousel-caption {
+    font-size: 18px;
+  }
+  
+  .carousel-item>img {
+    width: 100%
+  }

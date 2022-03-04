@@ -9,16 +9,16 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Coloc-action';
-  currentUser !: User
-  
+  currentUser !: User;
+
   constructor(
-    private _authService : AuthService,
-    public router : Router
+    private _authService: AuthService,
+    public router: Router
 
 
-  ){
+  ) {
     this.router.navigate(['/log-in'])
 
   }
@@ -32,8 +32,8 @@ export class AppComponent implements OnInit{
       this.currentUser = res;
     });
   }
-  
 
-  
-  
+
+
+
 }

@@ -6,4 +6,50 @@ aside{
 .card{
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
+.budget{
+    width: 100%;
+}
+.aze{
+    border: 5px double rgba(0, 0, 0, 0.329) ;
+}
+.aze:before{
+    content: '';
+    border: 10px solid rgba(0, 0, 0, 0.329);
+    display: block;
+    width: 100%;
+}
+.resume{
+    font-size: 48px;
+}
+h1{
+    text-align: center;
+    color: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    margin: 25px 0;
+    text-transform: uppercase;
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+    overflow: hidden;
+    height: 100px;
+}
+.sub{
+    font-size: 4rem;
+    transform: rotate(-1deg) skewX(-10deg);
+    text-shadow: 3px 1px #c4302b;
+    animation-name: first;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
 
+@keyframes first{
+    0%{
+        letter-spacing: 0.2rem;
+    }
+    60%{
+        letter-spacing: 6.2rem;
+    }
+    100%{
+        letter-spacing: 0.2rem;
+    }
+}

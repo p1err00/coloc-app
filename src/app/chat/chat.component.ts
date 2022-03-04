@@ -51,7 +51,6 @@ export class ChatComponent implements OnInit {
   }
 
   getChannelFromChild(channel : Channel_user){ 
-    console.log(channel);
     
     this.currentChannel = channel;   
     this.getMessage(channel.id_channel);

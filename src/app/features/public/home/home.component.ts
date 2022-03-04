@@ -47,12 +47,12 @@ export class HomeComponent implements OnInit {
   }
 
   getColoc(){
-    this.currentColoc = this.serverColoc.getById(this.currentUser.id_coloc).toPromise().then(resp => {
-
-      this.nb_personnes = resp.nb_personnes_coloc;
-      this.user_course = resp.user_course;
-      this.loyer_coloc = resp.loyer_coloc;
-      this.currentCourse = resp.user_course;
+    this.serverColoc.getById(this.currentUser.id_coloc).toPromise().then(resp => {
+      this.currentColoc = resp;
+      // this.nb_personnes = resp.nb_personnes_coloc;
+      // this.user_course = resp.user_course;
+      // this.loyer_coloc = resp.loyer_coloc;
+      // this.currentCourse = resp.user_course;
     })
     
   }

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Evenements } from 'src/app/models/evenements';
@@ -25,8 +26,19 @@ export class EventHomeComponent implements OnInit {
   }
 
   getEvents() {
+    let date = new Date().toString();
+    date = formatDate(new Date(), 'yyyy-MM-dd', 'en')
+    
     this.serverEvent.getAll().toPromise().then(resp => {
-        this.events = resp
+
+      for(let res of resp ){
+        
+        if(res.date_fin_e.toString() > date){
+          
+          this.events.push(res);
+        }
+        
+      }
     });
   }
 

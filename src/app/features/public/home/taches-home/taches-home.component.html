@@ -1,26 +1,75 @@
-<div class="card w-50 mr-2 w-100 scroll">
-    <div class="card-header" (click)="redirectTache()" role="button">
-      <h3 class="card-title text-center">
-        <img src="assets/img/ic_list_black_24dp.png" alt=""> Taches
-      </h3>
-    </div>
-
-    <div class="card-body d-flex justify-content-around">
-
-      <div class="d-flex flex-column">
-        <h4 class="card-subtitle mb-2 text-muted text-center">
-          <span class="border-right pr-2">Defini</span>
-          <span class="bg-success text-white pl-1 pr-1">{{nbTachesDefini}}</span>
-        </h4>
-        <p class="card-text text-center" *ngFor="let tache of tachesDefini">{{tache.nom_t}}</p>
-      </div>
-      <div>
-        <h4 class="card-subtitle mb-2 text-muted">
-          <span class="border-right pr-2">Non defini</span>
-          <span class="bg-warning text-white pl-1 pr-1">{{nbTachesNonDefini}}</span>
-        </h4>
-        <p class="card-text text-center" *ngFor="let tache of tachesNonDefini">{{tache.nom_t}}</p>
-
+<div class="d-flex w-100">
+  <div class="p-1 w-50">
+    <div class="carousel slide text-dark carousel-fade" id="slider" slide-bs-ride="carousel">
+      <!--indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#slider" *ngFor="let taches of tachesUser; let m = index" [attr.data-slide-to]="m"
+          ngClass="i == 0 ? 'active' : ''"></li>
+      </ol>
+      <h2>Taches à faire</h2>
+  
+      <div class="d-flex flex-row justify-content-between bg-success rounded-start">
+  
+        <button class="btn text-light" href="#slider" role="button" data-slide="prev">
+          <img src="/assets/img/ic_chevron_left_white_18dp.png" alt="">
+          <span class="sr-only">Previous</span>
+        </button>
+  
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let tache of tachesUser; let n = index"
+            [ngClass]="n == 0 ? 'item active' : 'item'">
+    
+            <div class="carousel-caption carousel-caption d-none d-md-block">
+              <h2>{{tache.nom_t}}</h2>
+              <h3>{{tache.date_exec_t}}</h3>
+              <h4>{{tache.desc_t}}</h4>
+            </div>
+          </div>
+        </div>
+  
+        <button class="btn text-light" href="#slider" role="button" data-slide="next">
+          <img src="/assets/img/ic_navigate_next_white_18dp.png" alt="">
+          <span class="sr-only">Next</span>
+        </button>
       </div>
     </div>
   </div>
+  
+  <div class="p-1 w-50">
+    <div class="carousel slide text-dark carousel-fade" id="sliderNotDefined" slide-bs-ride="carousel">
+      <!--indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#sliderNotDefined" *ngFor="let taches of tachesNotDefined; let o = index" [attr.data-slide-to]="o"
+          ngClass="i == 0 ? 'active' : ''"></li>
+      </ol>
+      <h2>Taches à faire</h2>
+  
+      <div class="d-flex flex-row justify-content-between bg-warning rounded-start">
+  
+        <button class="btn text-light" href="#sliderNotDefined" role="button" data-slide="prev">
+          <img src="/assets/img/ic_chevron_left_white_18dp.png" alt="">
+          <span class="sr-only">Previous</span>
+        </button>
+  
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let tache of tachesNotDefined; let p = index"
+            [ngClass]="p == 0 ? 'item active' : 'item'">
+    
+            <div class="carousel-caption carousel-caption d-none d-md-block">
+              <h2>{{tache.nom_t}}</h2>
+              <h3>{{tache.date_exec_t}}</h3>
+              <h4>{{tache.desc_t}}</h4>
+            </div>
+          </div>
+        </div>
+  
+        <button class="btn text-light" href="#sliderNotDefined" role="button" data-slide="next">
+          <img src="/assets/img/ic_navigate_next_white_18dp.png" alt="">
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>

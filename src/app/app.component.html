@@ -9,11 +9,11 @@
             <app-aside [currentUser]="currentUser"></app-aside>
         </aside>
 
-        <div class="mx-auto w-50">
+        <div class="main-app m-4">
             <router-outlet></router-outlet>
         </div>
 
-        <div class="d-flex w-25"  *ngIf="router.url != '/log-in' && currentUser">
+        <div class="d-flex chat"  *ngIf="router.url != '/log-in' && currentUser">
             <app-chat class="mr-3 w-100" [currentUser]="currentUser"></app-chat>
         </div>
     </div>

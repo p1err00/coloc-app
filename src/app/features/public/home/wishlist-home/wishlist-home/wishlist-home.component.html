@@ -1,0 +1,37 @@
+<div class="m-1 p-2">
+    <div class="carousel slide text-dark carousel-fade d-flex flex-column" id="sliderWish" slide-bs-ride="carousel">
+      <!--indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#sliderWish" *ngFor="let item of wishlist; let i = index" [attr.data-slide-to]="i"
+          ngClass="i == 0 ? 'active' : ''"></li>
+      </ol>
+      <h2 class="text-light float-left ml-4 border-bottom border-light mr-4">Wishlist</h2>
+  
+      <div class="d-flex flex-row justify-content-between rounded-start">
+  
+        <button class="btn text-light" href="#sliderWish" role="button" data-slide="prev">
+          <img src="/assets/img/ic_chevron_left_white_18dp.png" alt="">
+          <span class="sr-only">Previous</span>
+        </button>
+  
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let wish of wishlist; let k = index"
+            [ngClass]="k == 0 ? 'item active' : 'item'">
+    
+            <div class="carousel-caption carousel-caption d-none d-md-block">
+                <h2>{{wish.nom_w}}</h2>
+                <h3>{{wish.prix_w}}</h3>
+                <h4>{{wish.desc_w}}</h4>
+            </div>
+          </div>
+        </div>
+  
+        <button class="btn text-light" href="#sliderWish" role="button" data-slide="next">
+          <img src="/assets/img/ic_navigate_next_white_18dp.png" alt="">
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TODO Changer l'affichage par une image "wish(baguette)" et renvoyer sur la page Wishlist au click -->

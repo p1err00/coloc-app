@@ -1,0 +1,9 @@
+.aze{
+    border: 5px double rgba(0, 0, 0, 0.329) ;
+}
+.aze:before{
+    content: '';
+    border: 10px solid rgba(0, 0, 0, 0.329);
+    display: block;
+    width: 100%;
+}

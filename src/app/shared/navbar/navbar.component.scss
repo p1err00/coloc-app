@@ -1,3 +1,10 @@
 :host{
     font-style: bold;
 }
+.scroll{
+    max-height: 420px;
+    overflow-y: auto;
+}
+body{
+    background: #fff;
+}

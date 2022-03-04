@@ -76,7 +76,6 @@ export class EvenementsComponent implements OnInit {
     });
 
     modalRef.componentInstance.event.subscribe((item : any) => {
-      console.log(item);
       
       let event = {
         id_e : 0,
@@ -98,7 +97,6 @@ export class EvenementsComponent implements OnInit {
   
 
   openModalModif(item : Evenements){
-    console.log(item);
     
     const modalRef = this.modalService.open(ModalModifyEvenementComponent, {
       windowClass:'modalEvenement'
@@ -139,7 +137,6 @@ export class EvenementsComponent implements OnInit {
       this.authService.getAll().subscribe( resp => {
 
         for(let user of resp){
-          console.log("aazeaeazeazeazeazeeaeazeazeazeaz");
           if(user.id_user != this.currentUser.id_user){
             this.notifService.postChangeSomething(this.currentUser.username_user, 'evenement', this.currentUser.id_coloc, this.currentUser.id_user, user.id_user, );
           }

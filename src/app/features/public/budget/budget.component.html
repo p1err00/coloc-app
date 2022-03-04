@@ -1,16 +1,26 @@
-<h1>Budget</h1>
+<div class="d-flex flex-row justify-content-center w-100 mb-4">
 
-<div class="mb-4">
+    <mat-tab-group class="w-100">
+        <mat-tab label="Payements">
+            <div class="mb-4 w-100 aze">
 
-    <app-remboursement></app-remboursement>
-</div>
+                <app-depense [currentUser]="currentUser"></app-depense>
+            </div>
+        </mat-tab>
+        
+        <mat-tab label="Remboursement">
+            <div class="mb-4 w-100 aze">
 
-<div class="mb-4">
+                <app-remboursement class="mb-4"></app-remboursement>
+            </div>
+        </mat-tab>
+        
+        <mat-tab label="Abonnement">
+            <div class="mb-4 w-100 aze">
 
-    <app-depense></app-depense>
-</div>
+                <app-abonnement [currentUser]="currentUser"></app-abonnement>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 
-<div class="mb-4">
-
-    <app-abonnement></app-abonnement>
 </div>

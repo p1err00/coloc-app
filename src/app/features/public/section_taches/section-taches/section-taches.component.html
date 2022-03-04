@@ -1,0 +1,53 @@
+<div class="d-flex flex-row justify-content-between border-bottom pb-2">
+    <h1>Mes taches</h1>
+    <div class="d-flex flew-row">
+        <button class="btn btn-sm btn-primary m-1" (click)="openAddTacheSectionModal()">Ajouter</button>
+        <button class="btn btn-sm btn-warning m-1">Trier</button>
+    </div>
+</div>
+
+
+<div class="d-flex flex-column justify-content-start border-bottom p-4 w-100">
+
+    <div class="card d-flex flex-column justify-content-start w-25 pl-1 pr-2 mb-4 w-100"
+        *ngFor="let section of sectionMap | keyvalue">
+
+        <div class="d-flex flex-row justify-content-between m-1">
+
+            <h1>{{ section.key.nom }}</h1>
+            <div>
+                <button type="button" class="btn btn-sm btn-primary" (click)="openAddTacheItemModal()">Ajouter</button>
+                <button type="button" class="btn btn-sm btn-warning m-1">Trier</button>
+                <button type="button" class="btn btn-sm btn-danger m-1"
+                    (click)="openDeleteTacheSectionModal(section.key)">X</button>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-start">
+            <div class="card m-2" *ngFor="let item of section.value">
+                <div class="card-header d-flex flex-row justify-content-between"
+                    [ngClass]="item.is_do == true ? 'bg-success' : 'bg-danger'">
+                    <span>{{item.nom}}</span>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-info"
+                            (click)="openModifyTacheItemModal(item)">Modifier</button>
+                        <button type="button" class="btn btn-sm btn-danger"
+                            (click)="openDeleteTacheItemModal(item)">X</button>
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <span>{{ item.description }}</span>
+                    <span>{{item.is_multiple_tache}}</span>
+                    <span>{{item.categorie}}</span>
+
+                </div>
+
+                <div class="card-footer">
+                    <span>{{item.date_start}} - {{item.date_end}}</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -94,20 +94,19 @@ export class FileComponent implements OnInit, AfterContentInit {
   createShared(){
 
     // Display tables
-    this.selectUsersToShared = !this.selectUsersToShared;
-
+    
     if(this.currentFile.is_shared != true){
       this.currentFile.is_shared = true;
-
+      
       this.currentFile.id_shared = this.hash;
-
+      
       let shared : Shared = {
         id_shared : this.hash,
         id_folder : this.currentFile.id_stockage_folder,
         id_user : this.currentUser.id_user,
         extension : this.currentFile.extension
       }
-
+      
       this.sharedService.create(shared);
       this.fileService.update(this.currentFile.id_file, this.currentFile);
       this.getIdUserShared();
@@ -116,20 +115,36 @@ export class FileComponent implements OnInit, AfterContentInit {
       this.usersShared = [];
       this.getIdUserShared();
     }
+    this.selectUsersToShared = !this.selectUsersToShared;
   }
 
   addUserToShare(user : User){
 
-    let shared : Shared = {
-      id_shared : this.hash,
-      id_folder : this.currentFile.id_stockage_folder,
-      id_user : user.id_user,
-      extension : this.currentFile.extension
-    }
+    if(this.currentFile.id_shared != ''){
+      let shared : Shared = {
+        id_shared : this.currentFile.id_shared,
+        id_folder : this.currentFile.id_stockage_folder,
+        id_user : user.id_user,
+        extension : this.currentFile.extension
+      }
 
-    this.sharedService.create(shared);
-    this.usersShared.push(user);
-    this.users.splice(this.users.indexOf(user), 1);
+      this.sharedService.create(shared);
+      this.usersShared.push(user);
+      this.users.splice(this.users.indexOf(user), 1);
+
+    } else {
+      let shared : Shared = {
+        id_shared : this.hash,
+        id_folder : this.currentFile.id_stockage_folder,
+        id_user : user.id_user,
+        extension : this.currentFile.extension
+      }
+      this.sharedService.create(shared);
+      this.usersShared.push(user);
+      this.users.splice(this.users.indexOf(user), 1);
+    }
+    
+
     
   }
 

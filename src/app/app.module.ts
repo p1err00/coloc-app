@@ -21,7 +21,6 @@ import { ModalCategorieDeleteComponent } from './shared/modals/modal-categorie-d
 import { TachesComponent } from './features/public/taches/taches.component';
 import { EvenementsComponent } from './features/public/evenements/evenements.component';
 import { DatePipe } from '@angular/common';
-import { WishlistComponent } from './features/public/wishlist/wishlist.component';
 import { ModalAddCourseComponent } from './shared/modals/modal-add-course/modal-add-course.component';
 import { DepensesComponent } from './features/public/depenses/depenses.component';
 import { ModalAddWishlistComponent } from './shared/modals/modal-add-wishlist/modal-add-wishlist/modal-add-wishlist.component';
@@ -72,6 +71,15 @@ import { WishlistAsideComponent } from './shared/aside/wishlist-aside/wishlist-a
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FolderComponent } from './features/public/stockage/folder/folder/folder.component';
 import { FileComponent } from './features/public/stockage/file/file/file.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';         // TODO A virer
+
 
 @NgModule({
   declarations: [
@@ -90,7 +98,6 @@ import { FileComponent } from './features/public/stockage/file/file/file.compone
     ModalCategorieDeleteComponent,
     TachesComponent,
     EvenementsComponent,
-    WishlistComponent,
     ModalAddCourseComponent,
     DepensesComponent,
     ModalAddWishlistComponent,
@@ -151,7 +158,15 @@ import { FileComponent } from './features/public/stockage/file/file/file.compone
     }),
     ChartsModule,
     SharedModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    MatCardModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     RouterModule

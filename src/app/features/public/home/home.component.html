@@ -1,53 +1,112 @@
-<div class=" p-3 d-flex flex-column justify-content-around">
+<div class="m-4 d-flex flex-column justify-content-around">
 
-  <div class="card d-flex flex-row mb-4">
-    <div class="card-body text-center">
-      <h3 class="card-title">
-        <img src="assets/img/ic_wb_sunny.png" alt=""> Meteo
-      </h3>
-      <h3 class="card-subtitle mb-2 text-muted">Card subtitle</h3>
-      <p class="card-text"></p>
+
+  <div class="col">
+
+    <div class="d-flex flex-column w-100 justify-content-around">
+
+      <!-- Section bienvenu -->
+
+      <div class="d-flex flex-row justify-content-between">
+        <h1 class="text-dark border-bottom">Bienvenu <span>{{ currentUser.username_user }}</span></h1>
+
+        <div class="d-flex flex-row">
+          <div class="card w-100 bg-dark text-light aze">
+            <div class="d-flex flex-row justify-content-between">
+              <h2 class="ml-4 mt-4">La Date</h2>
+              <img src="assets/img/ic_date_range_white_3x.png" alt="" class="w-25">
+            </div>
+          </div>
+          <div class="card w-100 bg-dark text-light aze ">
+            <div class="d-flex flex-row justify-content-between">
+              <h2 class="ml-4 mt-4">La meteo</h2>
+              <img src="assets/img/ic_wb_sunny_white_3x.png" alt="" class="w-25">
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex flex-row justify-content-around w-100 mt-2 mb-4">
+        <app-tache-user-home></app-tache-user-home>
+
+        <div *ngIf="currentUser && currentColoc && currentUser.loyer_user" class="w-50">
+          <app-depenses-home [currentUser]="currentUser" [currentColoc]="currentColoc" [loyer]="currentUser.loyer_user"
+            class="w-100 card aze">
+          </app-depenses-home>
+        </div>
+
+        <div class="d-flex flex-column justify-content-around mt-0 pl-5 border-left border-4">
+          <div class="btn bg-success bg-gradient rounded rounded-3 card border-4 bg-opacity-10 m-2 rounded-circle w-50">
+            <img src="assets/img/ic_assignment_48pt_3x.png" alt="">
+          </div>
+
+          <div
+            class="btn bg-primary bg-gradient rounded rounded-3 card border-4 bg-opacity-10 m-2 mt-0 rounded-circle w-50">
+            <img src="assets/img/ic_folder_open_48pt_3x.png" alt="">
+          </div>
+
+          <div class="btn bg-info bg-gradient rounded rounded-3 card border-4 bg-opacity-10 m-2 rounded-circle w-50">
+            <img src="assets/img/ic_assessment_48pt_3x.png" alt="">
+          </div>
+
+        </div>
+
+      </div>
+      <!-- <app-stockage-home [currentUser]="currentUser" class="w-100 card aze bg-dark m-2"></app-stockage-home> -->
+
+
+
+      <div class="d-flex flex-row w-100">
+        <app-event-home class="w-25 card aze bg-dark"></app-event-home>
+
+        <app-wishlist-home class="w-50 mx-auto card m-2 aze bg-dark"></app-wishlist-home>
+      </div>
     </div>
-    <div class="card-body text-center">
-      <h3 class="card-title">
-        <img src="assets/img/ic_date_range.png" alt=""> Date
-      </h3>
-      <h3 class="card-subtitle mb-2 text-muted">{{ currentDate | date:'dd/MM/YYYY'}}</h3>
-      <p class="card-text"></p>
-    </div>
-    <div class="card-body text-center">
-      <h3 class="card-title">
-        <img src="assets/img/ic_supervisor_account_black_24dp.png" alt=""> Nb. Personne
-      </h3>
-      <h3 class="card-subtitle mb-2 text-muted" *ngIf="nb_personnes != 0">{{ nb_personnes }}</h3>
-      <p class="card-text"></p>
-    </div>
-    <div class="card-body text-center">
-      <h3 class="card-title"> 
-        <img src="assets/img/ic_account_balance_wallet_black_24dp.png" alt=""> Loyer
-      </h3>
-      <h3 class="card-subtitle mb-2 text-muted" *ngIf="loyer_coloc">{{ loyer_coloc }} €</h3>
-      <p class="card-text"></p>
+
+    <div class="card m-4">
+      <div class="card-header">
+        <h2>Colocation</h2>
+
+      </div>
+      <div class="card d-flex flex-row m-4">
+
+        <div class="card-body text-center">
+          <h3 class="card-title">
+            <img src="assets/img/ic_wb_sunny.png" alt=""> Meteo
+          </h3>
+          <h3 class="card-subtitle mb-2 text-muted">Card subtitle</h3>
+          <p class="card-text"></p>
+        </div>
+        <div class="card-body text-center">
+          <h3 class="card-title">
+            <img src="assets/img/ic_date_range.png" alt=""> Date
+          </h3>
+          <h3 class="card-subtitle mb-2 text-muted">{{ currentDate | date:'dd/MM/YYYY'}}</h3>
+          <p class="card-text"></p>
+        </div>
+        <div class="card-body text-center">
+          <h3 class="card-title">
+            <img src="assets/img/ic_supervisor_account_black_24dp.png" alt=""> Nb. Personne
+          </h3>
+          <h3 class="card-subtitle mb-2 text-muted" *ngIf="nb_personnes != 0">{{ nb_personnes }}</h3>
+          <p class="card-text"></p>
+        </div>
+        <div class="card-body text-center">
+          <h3 class="card-title">
+            <img src="assets/img/ic_account_balance_wallet_black_24dp.png" alt=""> Loyer
+          </h3>
+          <h3 class="card-subtitle mb-2 text-muted" *ngIf="loyer_coloc">{{ loyer_coloc }} €</h3>
+          <p class="card-text"></p>
+        </div>
+
+      </div>
+      <app-taches-home [currentUser]="currentUser" class="m-4"></app-taches-home>
+      <app-course-home [currentCourse]="currentCourse" class="w-75 mx-auto"></app-course-home>
+
     </div>
   </div>
 
-  <div *ngIf="currentUser && currentColoc && currentUser.loyer_user">
-    <app-depenses-home [currentUser]="currentUser" [currentColoc]="currentColoc" [loyer]="currentUser.loyer_user">
-    </app-depenses-home>
-  </div>
 
-  <div class="d-flex flex-row justify-content-between w-100 mb-4">
-
-    <app-taches-home></app-taches-home>
-
-    <app-event-home></app-event-home>
-  </div>
-
-  <div class="d-flex flex-row mb-4 justify-content-between w-100">
-
-    <app-stock-home></app-stock-home>
-
-    <app-course-home [currentCourse]="currentCourse" class="w-50"></app-course-home>
-
-  </div>
 </div>

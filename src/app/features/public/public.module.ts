@@ -26,6 +26,29 @@ import { ModalModifyFolderComponent } from './stockage/folder/modal/modal-modify
 import { ModalDeleteFolderComponent } from './stockage/folder/modal/modal-delete-folder/modal-delete-folder.component';
 import { ModalSharedFolderComponent } from './stockage/folder/modal/modal-shared-folder/modal-shared-folder.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { WishlistHomeComponent } from './home/wishlist-home/wishlist-home/wishlist-home.component';
+import { BudgetHomeComponent } from './home/budget-home/budget-home/budget-home.component';
+import { StockageHomeComponent } from './home/stockage-home/stockage-home/stockage-home.component';
+import { VoteHomeComponent } from './home/vote-home/vote-home.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ModalAddDepenseComponent } from './budget/depense/modals/modal-add-depense/modal-add-depense.component';
+import { ModalDeleteDepenseComponent } from './budget/depense/modals/modal-delete-depense/modal-delete-depense.component';
+import { ModalPayedComponent } from './budget/depense/modals/modal-payed/modal-payed.component';
+import { ModalMultiplePaymentComponent } from './budget/depense/modals/modal-multiple-payment/modal-multiple-payment.component';
+import { ModalTransfertComponent } from './budget/depense/modals/modal-transfert/modal-transfert.component';
+import { SectionTachesComponent } from './section_taches/section-taches/section-taches.component';
+import { SectionTachesItemComponent } from './section_taches/section-taches-item/section-taches-item.component';
+import { SectionEventsComponent } from './section_events/section-events/section-events.component';
+import { SectionEventsItemComponent } from './section_events/section-events-item/section-events-item.component';
+import { TacheUserHomeComponent } from './home/tache-user-home/tache-user-home/tache-user-home.component';
+import { AddTachesItemComponent } from './section_taches/modals/add-taches-item/add-taches-item.component';
+import { ModifyTachesItemComponent } from './section_taches/modals/modify-taches-item/modify-taches-item.component';
+import { DeleteTachesItemComponent } from './section_taches/modals/delete-taches-item/delete-taches-item.component';
+import { AddTacheSectionModalComponent } from './section_taches/modals/add-tache-section-modal/add-tache-section-modal.component';
+import { ModifyTacheSectionModalComponent } from './section_taches/modals/modify-tache-section-modal/modify-tache-section-modal.component';
+import { DeleteTacheSectionModalComponent } from './section_taches/modals/delete-tache-section-modal/delete-tache-section-modal.component';
 
 
 @NgModule({
@@ -52,13 +75,36 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ModalModifyFolderComponent,
     ModalDeleteFolderComponent,
     ModalSharedFolderComponent,
+    WishlistComponent,
+    WishlistHomeComponent,
+    BudgetHomeComponent,
+    StockageHomeComponent,
+    VoteHomeComponent,
+    ModalAddDepenseComponent,
+    ModalDeleteDepenseComponent,
+    ModalPayedComponent,
+    ModalMultiplePaymentComponent,
+    ModalTransfertComponent,
+    SectionTachesComponent,
+    SectionTachesItemComponent,
+    SectionEventsComponent,
+    SectionEventsItemComponent,
+    TacheUserHomeComponent,
+    AddTachesItemComponent,
+    ModifyTachesItemComponent,
+    DeleteTachesItemComponent,
+    AddTacheSectionModalComponent,
+    ModifyTacheSectionModalComponent,
+    DeleteTacheSectionModalComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     ChartsModule,
     ReactiveFormsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    MatTabsModule,
+    MatGridListModule
   ],
   exports: [
   ]

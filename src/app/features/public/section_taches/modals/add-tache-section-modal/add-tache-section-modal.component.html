@@ -1,0 +1,15 @@
+<form class="form-group m-4 p-2" [formGroup]="form">
+    <div class="card-header mb-3">
+        <h3>Ajouter une tache</h3>
+    </div>
+    <div class="mb-2 d-flex justify-content-between form-group">
+        <label for="name" class="form-label">Nom*</label>
+        <input type="text" class="form-control w-50" formControlName="nom" [ngStyle]="{'border-color':nom?.hasError('required') && form.controls.nom!.touched 
+                                              || ( nom?.hasError('pattern')) ? 'red' : ''}">
+    </div>
+
+    <div class="d-flex justify-content-center card-footer">
+        <button type="submit" class="btn btn-primary " (click)="saveModal()">Ajouter</button>
+    </div>
+
+</form>

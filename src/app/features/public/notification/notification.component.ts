@@ -41,7 +41,6 @@ export class NotificationComponent implements OnInit {
   getNotifs(){
 
     this.httpNotif.getAll().subscribe( resp => {     
-      console.log(resp);
       
       for(let res of resp){
         if(res.is_read != true){
@@ -50,7 +49,6 @@ export class NotificationComponent implements OnInit {
           } else {
             this.notifAutre.push(res);
           }
-          console.log(res.id_user_send);
           
           this.getUserById(res.id_user_send);
         }       
@@ -59,7 +57,6 @@ export class NotificationComponent implements OnInit {
   }
 
   getUserById(id : number){
-    console.log(id);
     
     setTimeout(() => {
       this.httpUser.getUserProfile(id).subscribe( resp => {

@@ -8,22 +8,22 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModaleTachesDeleteComponent implements OnInit {
 
-  @Input() fromParent : any;
+  @Input() fromParent: any;
   @Output() event = new EventEmitter<any>();
 
 
   constructor(
-    public activeModal : NgbActiveModal
+    public activeModal: NgbActiveModal
   ) { }
 
   ngOnInit(): void {
   }
 
-  closeModal(){
+  closeModal() {
     this.activeModal.close();
   }
 
-  deleteItem(fromParent : any){
+  deleteItem(fromParent: any) {
 
     this.event.emit(this.fromParent);
     this.activeModal.close();

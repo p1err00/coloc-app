@@ -31,8 +31,12 @@ export class HomeAsideComponent implements OnInit {
   }
 
   getTacheUser(){
-      this.serverTaches.getByUser(this.currentUser.username_user).subscribe( resp => {
-        this.tachesUser = resp;
+      this.serverTaches.getAll().subscribe( resp => {
+        for(let res of resp){
+          if(res.personne_t == "" && res.done_t !=1){
+            this.tachesUser.push(res);
+          }
+        }
     });
   }
 

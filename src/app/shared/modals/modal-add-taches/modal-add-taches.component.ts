@@ -15,7 +15,7 @@ export class ModalAddTachesComponent implements OnInit {
   @Input() fromParent : User[] = [];
   @Output() event = new EventEmitter<any>();
 
-  signupForm: FormGroup;
+  form: FormGroup;
 
   currentUserTache : string = '';
 
@@ -26,7 +26,7 @@ export class ModalAddTachesComponent implements OnInit {
     public activeModal : NgbActiveModal,
     private alertService : AlertService
   ) {
-    this.signupForm = this.fb.group({
+    this.form = this.fb.group({
       nom_t: ['', Validators.required],
       date_exec_t : ['', Validators.required],
       date_fin_t : ['', Validators.required],
@@ -40,11 +40,11 @@ export class ModalAddTachesComponent implements OnInit {
   }
 
   // Getter form
-  get nom_t(){return this.signupForm.get('nom_t');}
-  get date_exec_t(){return this.signupForm.get('date_exec_t');}
-  get date_fin_t(){return this.signupForm.get('date_fin_t');}
-  get desc_t(){return this.signupForm.get('desc_t');}
-  get personne_t(){return this.signupForm.get('personne_t');}
+  get nom_t(){return this.form.get('nom_t');}
+  get date_exec_t(){return this.form.get('date_exec_t');}
+  get date_fin_t(){return this.form.get('date_fin_t');}
+  get desc_t(){return this.form.get('desc_t');}
+  get personne_t(){return this.form.get('personne_t');}
 
   fillOptions(){
     for(let from of this.fromParent){
@@ -54,13 +54,13 @@ export class ModalAddTachesComponent implements OnInit {
   
   saveModal(){
     
-    if (this.signupForm.valid) {
+    if (this.form.valid) {
       this.event.emit({
         id: 0,
-        nom_t : this.signupForm.get('nom_t'),
-        date_exec_t : this.signupForm.get('date_exec_t'),
-        date_fin_t : this.signupForm.get('date_fin_t'),
-        desc_t : this.signupForm.get('desc_t'),
+        nom_t : this.form.get('nom_t'),
+        date_exec_t : this.form.get('date_exec_t'),
+        date_fin_t : this.form.get('date_fin_t'),
+        desc_t : this.form.get('desc_t'),
         personne_t : this.currentUserTache
       });
 

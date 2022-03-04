@@ -1,4 +1,4 @@
-<form class="form-group m-4 p-2" [formGroup]="signupForm">
+<form class="form-group m-4 p-2" [formGroup]="form">
   <div class="card-header mb-3">
     <h3>Ajouter une tache</h3>
   </div>
@@ -6,7 +6,7 @@
     <label for="name" class="form-label">Nom*</label>
     <input type="text" class="form-control w-50"
     formControlName="nom_t"
-    [ngStyle]="{'border-color':nom_t?.hasError('required') && signupForm.controls.nom_t!.touched 
+    [ngStyle]="{'border-color':nom_t?.hasError('required') && form.controls.nom_t!.touched 
                                     || ( nom_t?.hasError('pattern')) ? 'red' : ''}" >
   </div>
 
@@ -14,15 +14,15 @@
     <label for="" class="form-label">Date d'execution*</label>
     <input type="date" name="prix" class="form-control w-50"
     formControlName="date_exec_t"
-    [ngStyle]="{'border-color':date_exec_t?.hasError('required') && signupForm.controls.date_exec_t!.touched 
-                                    || (signupForm.controls.date_exec_t!.touched && date_exec_t?.hasError('pattern')) ? 'red' : ''}" >
+    [ngStyle]="{'border-color':date_exec_t?.hasError('required') && form.controls.date_exec_t!.touched 
+                                    || (form.controls.date_exec_t!.touched && date_exec_t?.hasError('pattern')) ? 'red' : ''}" >
   </div>
 
   <div class="mb-2 d-flex justify-content-between">
     <label for="" class="form-label">Date de fin*</label>
     <input type="date" name="prix" class="form-control w-50"
     formControlName="date_fin_t"
-    [ngStyle]="{'border-color':date_fin_t?.hasError('required') && signupForm.controls.date_fin_t!.touched 
+    [ngStyle]="{'border-color':date_fin_t?.hasError('required') && form.controls.date_fin_t!.touched 
                                     || (date_fin_t?.hasError('pattern')) ? 'red' : ''}" >
   </div>
 
@@ -30,7 +30,7 @@
     <label for="" class="form-label">Description*</label>
     <textarea type="text" name="prix" class="form-control w-50"
     formControlName="desc_t"
-    [ngStyle]="{'border-color':desc_t?.hasError('required') && signupForm.controls.desc_t!.touched 
+    [ngStyle]="{'border-color':desc_t?.hasError('required') && form.controls.desc_t!.touched 
                                     || (desc_t?.hasError('pattern')) ? 'red' : ''}" ></textarea>
   </div>
 

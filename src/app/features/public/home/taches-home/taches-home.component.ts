@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Taches } from 'src/app/models/taches';
+import { User } from 'src/app/models/user';
 import { TachesService } from 'src/app/services/taches.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { TachesService } from 'src/app/services/taches.service';
 })
 export class TachesHomeComponent implements OnInit {
 
-  tachesDefini: Taches[] = [];
-  tachesNonDefini: Taches[] = [];
+  tachesUser: Taches[] = [];
+  tachesNotDefined : Taches[] = []
+  @Input() currentUser !: User;
 
   nbTachesDefini : number = 0;
-  nbTachesNonDefini : number = 0;
+
 
   constructor(
     private serverTaches: TachesService,
@@ -23,24 +25,30 @@ export class TachesHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTaches();
-
+    this.getTachesNotDeined();
   }
 
   getTaches() {
-    this.serverTaches.getAll().subscribe(resp => {
+    setTimeout(() => {
+      this.serverTaches.getByUser(this.currentUser.username_user).subscribe(resp => {
 
-      for (let item of resp) {
-        if (item.personne_t != '' && item.done_t != 1) {
+        this.tachesUser = resp;
+      });
+    }, 200);
+  }
 
-          this.tachesDefini.push(item);
-          this.nbTachesDefini++;
-        } else if(item.done_t != 1){
+  getTachesNotDeined() {
+    setTimeout(() => {
+      this.serverTaches.getAll().subscribe(resp => {
 
-          this.tachesNonDefini.push(item);
-          this.nbTachesNonDefini++;
+        for(let res of resp){
+          if(res.personne_t == ''){
+            this.tachesNotDefined.push(res);
+          }
         }
-      }
-    });
+        this.tachesUser = resp;
+      });
+    }, 200);
   }
 
   redirectTache() {

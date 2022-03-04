@@ -1,0 +1,12 @@
+<div class="m-2 mx-auto">
+    <h2 class="text-light border-bottom border-light ml-4 mr-4">Stockage</h2>
+    <div class="d-flex row justify-content-start mx-auto">
+        <div class="card w-25 m-2 border border-4 border-success overflow-auto" *ngFor="let folder of stockage_folder">
+            <h2 class="text-center">
+                {{ folder.nom }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<!-- TODO Faire une liste des dossier existants et y acceder lorsqu'on click dessus / Mettre image dossier -->
